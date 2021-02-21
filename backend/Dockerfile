@@ -2,8 +2,8 @@ FROM python:3.8
 
 EXPOSE 8000
 
-COPY . /app
-WORKDIR /app
+ADD . /backend
+WORKDIR /backend
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
