@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   backend:
-    build: .
+    build: ./backend
     ports:
       - "8000:8000"
     volumes:
@@ -15,4 +15,22 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: test
+      POSTGRES_PASSWORD: 
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      PORT: ${PORT}
+      NODE_ENV: ${NODE_ENV}
+      REACT_APP_BASE_URL: ${REACT_APP_BASE_URL}
+    volumes:
+      - ./frontend:/app
+    networks:
+      - proxynet
+networks:
+  proxynet:
+    name: custom_network
