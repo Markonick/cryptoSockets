@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const OrderBook = () => {
   const [previousTick, setPreviousTick] = useState({});
   const [tick, setTick] = useState({});
-  // const [diff, setDiff] = useState();
+  const [diff, setDiff] = useState();
   const currencyPair = 'btcusd';
 
   const currencyArray = currencyPair.toUpperCase().match(/.{1,3}/g);
@@ -22,11 +22,11 @@ const OrderBook = () => {
       ws.send(JSON.stringify(subscribe));
     };
     ws.onmessage = (event) => {
-      setPreviousTick(tick);
+      // setPreviousTick(tick);
       const incomingTick = JSON.parse(event.data);
-      let calculatedDiff = Number(previousTick.p) - Number(incomingTick.p)
+      let calculatedDiff =  Number(incomingTick.p) - Number(tick.p)
       setTick(incomingTick)
-      // setDiff(calculatedDiff)
+      setDiff(calculatedDiff)
     };
     ws.onclose = () => {
       ws.close();
@@ -37,22 +37,28 @@ const OrderBook = () => {
     };
   }, []);
 
+
+  useEffect(() =>  {
+      setPreviousTick(tick);
+  }, [tick]);
   
-  console.log(tick)
 
   let color = ""
-  let diff = previousTick.p - tick.p;
+  // let diff = previousTick.p - tick.p;
   
   
   console.log("previousTick: ", previousTick.p) 
   console.log("tick: ", tick.p)
   console.log("diff: ", diff)
   color = diff > 0 ? "green": "red"
-
+  
   return (
     <div className="order-container">
       <table>
         Symbol: {tick.s} <br/>
+        {() => setPreviousTick(tick)}
+        <span style={{color: color}}>Previous Price: {previousTick.p} </span><br/>
+        <span style={{color: color}}>Diff: {diff} </span><br/>
         <span style={{color: color}}>Price: {tick.p} </span><br/>
       </table>
     </div>
