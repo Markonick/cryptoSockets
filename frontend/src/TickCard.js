@@ -1,12 +1,10 @@
 import React, { useState, useEffect }  from "react";
 // import { useHistory } from "react-router-dom";
-import moment from 'moment';
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Link from "@material-ui/core/Link";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import Tick from "./Tick";
 import SymbolLogo from './SymbolLogo'
 

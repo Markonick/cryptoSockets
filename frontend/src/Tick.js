@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const Tick = () => {
     const [tick, setTick] = useState({});
-    const [previousTick, setPreviousTick] = useState({});
     const [tickBuffer, setTickBuffer] = useState([]);
     const [diff, setDiff] = useState();
 
@@ -24,14 +23,13 @@ const Tick = () => {
             console.log(incomingTick)
             const buffer = fifo(2, incomingTick)
             setTickBuffer(buffer)
-            let calculatedDiff = buffer ? buffer.map((item, i) => {
+            let calculatedDiff =  buffer.map((item, i) => {
                 console.log(item)
-                return calcDiff(Number(item.c), Number(incomingTick[i].c))
-            } ")
+                if(item.isArray === "array") return calcDiff(Number(item.c), Number(incomingTick[i].c))
+            })
             console.log(calculatedDiff)
             setDiff(calculatedDiff)
             setTick(incomingTick)
-            setPreviousTick(tickBuffer[0])
         };
         ws.onclose = () => {
             ws.close();
@@ -49,7 +47,7 @@ const Tick = () => {
     const calcDiff = (prevPrice, newPrice) => {
         let diff = 0
         if(tickBuffer.length === 2){
-         diff = newPrice - prevPrice
+            diff = newPrice - prevPrice
         }
 
         return diff
