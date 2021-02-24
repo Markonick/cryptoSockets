@@ -1,0 +1,1879 @@
+{
+    "status": {
+        "timestamp": "2021-02-24T13:07:06.387Z",
+        "error_code": 0,
+        "error_message": null,
+        "elapsed": 14,
+        "credit_count": 1,
+        "notice": null
+    },
+    "data": {
+        "ADA": {
+            "id": 2010,
+            "name": "Cardano",
+            "symbol": "ADA",
+            "category": "coin",
+            "description": "Cardano (ADA) is a cryptocurrency . Users are able to generate ADA through the process of mining. Cardano has a current supply of 45,000,000,000 with 31,112,484,646 in circulation. The last known price of Cardano is 1.06326648 USD and is up 18.82 over the last 24 hours. It is currently trading on 233 active market(s) with $9,658,402,714.18 traded over the last 24 hours. More information can be found at https://www.cardano.org.",
+            "slug": "cardano",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2010.png",
+            "subreddit": "cardano",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "dpos",
+                "pos",
+                "platform",
+                "research",
+                "smart-contracts",
+                "staking",
+                "binance-chain"
+            ],
+            "tag-names": [
+                "Mineable",
+                "DPoS",
+                "PoS",
+                "Platform",
+                "Research",
+                "Smart Contracts",
+                "Staking",
+                "Binance Chain"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PLATFORM"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.cardano.org"
+                ],
+                "twitter": [
+                    "https://twitter.com/cardano"
+                ],
+                "message_board": [
+                    "https://medium.com/feed/cardanorss",
+                    "https://forum.cardano.org/"
+                ],
+                "chat": [
+                    "https://t.me/Cardano"
+                ],
+                "explorer": [
+                    "https://cardanoexplorer.com/",
+                    "https://cardanoscan.io/",
+                    "https://blockchair.com/cardano",
+                    "https://bscscan.com/token/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+                    "https://ada.tokenview.com/en"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/cardano"
+                ],
+                "technical_doc": [
+                    "https://docs.cardano.org/en/latest/"
+                ],
+                "source_code": [
+                    "https://cardanoupdates.com/"
+                ],
+                "announcement": [
+                    "https://t.me/CardanoAnnouncements"
+                ]
+            },
+            "platform": null,
+            "date_added": "2017-10-01T00:00:00.000Z",
+            "twitter_username": "cardano",
+            "is_hidden": 0
+        },
+        "BAT": {
+            "id": 1697,
+            "name": "Basic Attention Token",
+            "symbol": "BAT",
+            "category": "token",
+            "description": "Basic Attention Token (BAT) is a cryptocurrency and operates on the Ethereum platform. Basic Attention Token has a current supply of 1,500,000,000 with 1,488,572,312.6224163 in circulation. The last known price of Basic Attention Token is 0.52125414 USD and is up 24.81 over the last 24 hours. It is currently trading on 262 active market(s) with $485,072,922.91 traded over the last 24 hours. More information can be found at https://basicattentiontoken.org/.",
+            "slug": "basic-attention-token",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1697.png",
+            "subreddit": "BATProject",
+            "notice": "",
+            "tags": [
+                "marketing",
+                "content-creation",
+                "payments"
+            ],
+            "tag-names": [
+                "Marketing",
+                "Content Creation",
+                "Payments"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://basicattentiontoken.org/"
+                ],
+                "twitter": [
+                    "https://twitter.com/attentiontoken"
+                ],
+                "message_board": [],
+                "chat": [],
+                "explorer": [
+                    "https://etherscan.io/token/0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+                    "https://ethplorer.io/address/0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+                    "https://blockchair.com/ethereum/erc-20/token/0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+                    "https://eth.tokenview.com/en/token/0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+                    "https://bscscan.com/token/0x101d82428437127bf1608f699cd651e6abf9766e"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/BATProject"
+                ],
+                "technical_doc": [
+                    "https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf"
+                ],
+                "source_code": [],
+                "announcement": []
+            },
+            "platform": {
+                "id": 1027,
+                "name": "Ethereum",
+                "symbol": "ETH",
+                "slug": "ethereum",
+                "token_address": "0x0d8775f648430679a709e98d2b0cb6250d2887ef"
+            },
+            "date_added": "2017-06-01T00:00:00.000Z",
+            "twitter_username": "attentiontoken",
+            "is_hidden": 0
+        },
+        "BCH": {
+            "id": 1831,
+            "name": "Bitcoin Cash",
+            "symbol": "BCH",
+            "category": "coin",
+            "description": "Bitcoin Cash (BCH) is a cryptocurrency . Users are able to generate BCH through the process of mining. Bitcoin Cash has a current supply of 18,663,243.75. The last known price of Bitcoin Cash is 546.03372893 USD and is up 14.85 over the last 24 hours. It is currently trading on 586 active market(s) with $6,221,899,110.28 traded over the last 24 hours. More information can be found at http://bch.info.",
+            "slug": "bitcoin-cash",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1831.png",
+            "subreddit": "Bitcoincash",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "marketplace",
+                "enterprise-solutions",
+                "binance-chain"
+            ],
+            "tag-names": [
+                "Mineable",
+                "Marketplace",
+                "Enterprise solutions",
+                "Binance Chain"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "PROPERTY",
+                "PROPERTY",
+                "PLATFORM"
+            ],
+            "urls": {
+                "website": [
+                    "http://bch.info"
+                ],
+                "twitter": [],
+                "message_board": [],
+                "chat": [],
+                "explorer": [
+                    "https://explorer.bitcoin.com/bch",
+                    "https://blockchair.com/bitcoin-cash",
+                    "https://bch.tokenview.com/en",
+                    "https://www.oklink.com/bch",
+                    "https://bscscan.com/token/0x8ff795a6f4d97e7887c79bea79aba5cc76444adf"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Bitcoincash"
+                ],
+                "technical_doc": [],
+                "source_code": [
+                    "https://gitlab.com/bitcoin-cash-node/"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=2040221.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2017-07-23T00:00:00.000Z",
+            "twitter_username": "",
+            "is_hidden": 0
+        },
+        "BNB": {
+            "id": 1839,
+            "name": "Binance Coin",
+            "symbol": "BNB",
+            "category": "coin",
+            "description": "Binance Coin (BNB) is a cryptocurrency . Binance Coin has a current supply of 170,532,785 with 154,532,785 in circulation. The last known price of Binance Coin is 271.36329409 USD and is up 33.21 over the last 24 hours. It is currently trading on 475 active market(s) with $8,055,275,469.55 traded over the last 24 hours. More information can be found at https://www.binance.com/.",
+            "slug": "binance-coin",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png",
+            "subreddit": "binance",
+            "notice": "",
+            "tags": [
+                "marketplace",
+                "payments"
+            ],
+            "tag-names": [
+                "Marketplace",
+                "Payments"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.binance.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/binance"
+                ],
+                "message_board": [],
+                "chat": [
+                    "https://t.me/binanceexchange"
+                ],
+                "explorer": [
+                    "https://explorer.binance.org/",
+                    "https://etherscan.io/token/0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
+                    "https://bscscan.com/token/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+                    "https://blockchair.com/ethereum/erc-20/token/0xb8c77482e45f1f44de1745f52c74426c631bdd52"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/binance"
+                ],
+                "technical_doc": [
+                    "https://whitepaper.io/document/10/binance-whitepaper"
+                ],
+                "source_code": [],
+                "announcement": []
+            },
+            "platform": null,
+            "date_added": "2017-07-25T00:00:00.000Z",
+            "twitter_username": "binance",
+            "is_hidden": 0
+        },
+        "BTC": {
+            "id": 1,
+            "name": "Bitcoin",
+            "symbol": "BTC",
+            "category": "coin",
+            "description": "Bitcoin (BTC) is a cryptocurrency . Users are able to generate BTC through the process of mining. Bitcoin has a current supply of 18,637,325. The last known price of Bitcoin is 50,807.51988407 USD and is up 10.51 over the last 24 hours. It is currently trading on 9748 active market(s) with $78,487,921,311.30 traded over the last 24 hours. More information can be found at https://bitcoin.org/.",
+            "slug": "bitcoin",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png",
+            "subreddit": "bitcoin",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "pow",
+                "sha-256",
+                "store-of-value",
+                "state-channels",
+                "coinbase-ventures-portfolio",
+                "three-arrows-capital-portfolio",
+                "polychain-capital-portfolio"
+            ],
+            "tag-names": [
+                "Mineable",
+                "PoW",
+                "SHA-256",
+                "Store of Value",
+                "State channels",
+                "Coinbase Ventures Portfolio",
+                "Three Arrows Capital Portfolio",
+                "Polychain Capital Portfolio"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://bitcoin.org/"
+                ],
+                "twitter": [],
+                "message_board": [
+                    "https://bitcointalk.org"
+                ],
+                "chat": [],
+                "explorer": [
+                    "https://blockchain.coinmarketcap.com/chain/bitcoin",
+                    "https://blockchain.info/",
+                    "https://live.blockcypher.com/btc/",
+                    "https://blockchair.com/bitcoin",
+                    "https://explorer.viabtc.com/btc"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/bitcoin"
+                ],
+                "technical_doc": [
+                    "https://bitcoin.org/bitcoin.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/bitcoin/"
+                ],
+                "announcement": []
+            },
+            "platform": null,
+            "date_added": "2013-04-28T00:00:00.000Z",
+            "twitter_username": "",
+            "is_hidden": 0
+        },
+        "BTT": {
+            "id": 3718,
+            "name": "BitTorrent",
+            "symbol": "BTT",
+            "category": "token",
+            "description": "BitTorrent (BTT) is a cryptocurrency and operates on the Tron platform. BitTorrent has a current supply of 990,000,000,000 with 989,978,525,231.6823 in circulation. The last known price of BitTorrent is 0.00148153 USD and is up 19.38 over the last 24 hours. It is currently trading on 135 active market(s) with $627,702,335.07 traded over the last 24 hours. More information can be found at https://www.bittorrent.com/btt/.",
+            "slug": "bittorrent",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3718.png",
+            "subreddit": "BittorrentToken",
+            "notice": "",
+            "tags": [
+                "platform",
+                "distributed-computing",
+                "filesharing",
+                "ipfs"
+            ],
+            "tag-names": [
+                "Platform",
+                "Distributed Computing",
+                "Filesharing",
+                "IPFS"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.bittorrent.com/btt/"
+                ],
+                "twitter": [
+                    "https://twitter.com/BitTorrent"
+                ],
+                "message_board": [
+                    "http://blog.bittorrent.com/",
+                    "https://forum.bittorrent.com/"
+                ],
+                "chat": [
+                    "https://t.me/BTTBitTorrent"
+                ],
+                "explorer": [
+                    "https://tronscan.org/#/token/1002000",
+                    "https://trxplorer.io/token/1002000"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/BittorrentToken"
+                ],
+                "technical_doc": [
+                    "https://www.bittorrent.com/btt/btt-docs/BitTorrent_(BTT)_White_Paper_v0.8.7_Feb_2019.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/bittorrent"
+                ],
+                "announcement": [
+                    "https://medium.com/bittorrent/bittorrent-foundation-unveils-more-details-regarding-bittorrent-btt-airdrops-for-tron-trx-8bbd194f8a87"
+                ]
+            },
+            "platform": {
+                "id": 1958,
+                "name": "Tron",
+                "symbol": "TRX",
+                "slug": "tron",
+                "token_address": "1002000"
+            },
+            "date_added": "2019-01-31T00:00:00.000Z",
+            "twitter_username": "BitTorrent",
+            "is_hidden": 0
+        },
+        "DASH": {
+            "id": 131,
+            "name": "Dash",
+            "symbol": "DASH",
+            "category": "coin",
+            "description": "Dash (DASH) is a cryptocurrency . Users are able to generate DASH through the process of mining. Dash has a current supply of 9,989,510.97049146. The last known price of Dash is 253.69456598 USD and is up 19.86 over the last 24 hours. It is currently trading on 368 active market(s) with $2,090,895,965.97 traded over the last 24 hours. More information can be found at https://www.dash.org/.",
+            "slug": "dash",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/131.png",
+            "subreddit": "dashpay",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "hybrid-pow-pos",
+                "x11",
+                "medium-of-exchange",
+                "privacy",
+                "masternodes"
+            ],
+            "tag-names": [
+                "Mineable",
+                "Hybrid - PoW & PoS",
+                "X11",
+                "Medium of Exchange",
+                "Privacy",
+                "Masternodes"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.dash.org/",
+                    "https://newsroom.dash.org/"
+                ],
+                "twitter": [
+                    "https://twitter.com/Dashpay"
+                ],
+                "message_board": [
+                    "https://www.dash.org/forum/"
+                ],
+                "chat": [
+                    "https://t.me/dash_chat",
+                    "https://discord.com/invite/PXbUxJB"
+                ],
+                "explorer": [
+                    "https://explorer.dash.org",
+                    "https://insight.dash.org/insight/",
+                    "https://chainz.cryptoid.info/dash/",
+                    "https://dash.tokenview.com/en",
+                    "https://blockchair.com/dash"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/dashpay"
+                ],
+                "technical_doc": [
+                    "https://docs.dash.org/"
+                ],
+                "source_code": [
+                    "https://github.com/dashpay/dash"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=421615.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2014-02-14T00:00:00.000Z",
+            "twitter_username": "Dashpay",
+            "is_hidden": 0
+        },
+        "DCN": {
+            "id": 1876,
+            "name": "Dentacoin",
+            "symbol": "DCN",
+            "category": "token",
+            "description": "Dentacoin (DCN) is a cryptocurrency and operates on the Ethereum platform. Dentacoin has a current supply of 7,899,848,965,678 with 548,105,296,887 in circulation. The last known price of Dentacoin is 0.00001711 USD and is up 16.64 over the last 24 hours. It is currently trading on 16 active market(s) with $263,238.87 traded over the last 24 hours. More information can be found at http://www.dentacoin.com/.",
+            "slug": "dentacoin",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1876.png",
+            "subreddit": "Dentacoin",
+            "notice": "",
+            "tags": [
+                "health"
+            ],
+            "tag-names": [
+                "Health"
+            ],
+            "tag-groups": [
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "http://www.dentacoin.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/dentacoin"
+                ],
+                "message_board": [],
+                "chat": [
+                    "https://t.me/dentacoin"
+                ],
+                "explorer": [
+                    "https://etherscan.io/token/0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6",
+                    "https://ethplorer.io/address/0x08d32b0da63e2c3bcf8019c9c5d849d7a9d791e6"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Dentacoin"
+                ],
+                "technical_doc": [
+                    "https://dentacoin.com/assets/uploads/whitepaper.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/Dentacoin"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1944236.0"
+                ]
+            },
+            "platform": {
+                "id": 1027,
+                "name": "Ethereum",
+                "symbol": "ETH",
+                "slug": "ethereum",
+                "token_address": "0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6"
+            },
+            "date_added": "2017-08-11T00:00:00.000Z",
+            "twitter_username": "dentacoin",
+            "is_hidden": 0
+        },
+        "DOGE": {
+            "id": 74,
+            "name": "Dogecoin",
+            "symbol": "DOGE",
+            "category": "coin",
+            "description": "Dogecoin (DOGE) is a cryptocurrency and operates on the Binance Smart Chain platform. Users are able to generate DOGE through the process of mining. Dogecoin has a current supply of 128,509,684,256.27759. The last known price of Dogecoin is 0.05264387 USD and is up 20.86 over the last 24 hours. It is currently trading on 305 active market(s) with $2,780,106,388.19 traded over the last 24 hours. More information can be found at http://dogecoin.com/.",
+            "slug": "dogecoin",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/74.png",
+            "subreddit": "dogecoin",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "pow",
+                "scrypt",
+                "medium-of-exchange",
+                "memes",
+                "payments"
+            ],
+            "tag-names": [
+                "Mineable",
+                "PoW",
+                "Scrypt",
+                "Medium of Exchange",
+                "Memes",
+                "Payments"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "http://dogecoin.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/dogecoin"
+                ],
+                "message_board": [],
+                "chat": [
+                    "http://webchat.freenode.net/?nick=Shibe..&channels=%23dogecoin&prompt=1"
+                ],
+                "explorer": [
+                    "https://blockchair.com/dogecoin",
+                    "http://dogechain.info/chain/Dogecoin",
+                    "https://doge.tokenview.com",
+                    "https://explorer.viabtc.com/doge",
+                    "https://bscscan.com/token/0xba2ae424d960c26247dd6c32edc70b295c744c43"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/dogecoin"
+                ],
+                "technical_doc": [
+                    "https://github.com/dogecoin/dogecoin/blob/master/README.md"
+                ],
+                "source_code": [
+                    "https://github.com/dogecoin/dogecoin"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=361813.0"
+                ]
+            },
+            "platform": {
+                "id": 1839,
+                "name": "Binance Smart Chain",
+                "symbol": "BNB",
+                "slug": "binance-coin",
+                "token_address": "0xba2ae424d960c26247dd6c32edc70b295c744c43"
+            },
+            "date_added": "2013-12-15T00:00:00.000Z",
+            "twitter_username": "dogecoin",
+            "is_hidden": 0
+        },
+        "EOS": {
+            "id": 1765,
+            "name": "EOS",
+            "symbol": "EOS",
+            "category": "coin",
+            "description": "EOS (EOS) is a cryptocurrency . EOS has a current supply of 1,027,316,586.075 with 950,816,174.591 in circulation. The last known price of EOS is 4.04547968 USD and is up 14.12 over the last 24 hours. It is currently trading on 479 active market(s) with $4,362,731,757.43 traded over the last 24 hours. More information can be found at https://eos.io/.",
+            "slug": "eos",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1765.png",
+            "subreddit": "EOS",
+            "notice": "",
+            "tags": [
+                "medium-of-exchange",
+                "enterprise-solutions",
+                "smart-contracts",
+                "binance-chain"
+            ],
+            "tag-names": [
+                "Medium of Exchange",
+                "Enterprise solutions",
+                "Smart Contracts",
+                "Binance Chain"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PLATFORM"
+            ],
+            "urls": {
+                "website": [
+                    "https://eos.io/"
+                ],
+                "twitter": [
+                    "https://twitter.com/block_one_"
+                ],
+                "message_board": [],
+                "chat": [
+                    "https://t.me/joinchat/AAAAAEQbOeucnaMWN0A9dQ"
+                ],
+                "explorer": [
+                    "https://bloks.io/",
+                    "https://eosflare.io/",
+                    "https://eospark.com/",
+                    "https://www.eosx.io/?partner=coinmarketcap",
+                    "https://bscscan.com/token/0x56b6fb708fc5732dec1afc8d8556423a2edccbd6"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/EOS"
+                ],
+                "technical_doc": [
+                    "https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md"
+                ],
+                "source_code": [
+                    "https://github.com/eosio"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1904415.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2017-07-01T00:00:00.000Z",
+            "twitter_username": "block_one_",
+            "is_hidden": 0
+        },
+        "ETN": {
+            "id": 2137,
+            "name": "Electroneum",
+            "symbol": "ETN",
+            "category": "coin",
+            "description": "Electroneum (ETN) is a cryptocurrency . Users are able to generate ETN through the process of mining. Electroneum has a current supply of 10,235,808,022.88. The last known price of Electroneum is 0.0109067 USD and is up 29.86 over the last 24 hours. It is currently trading on 29 active market(s) with $1,610,387.19 traded over the last 24 hours. More information can be found at http://electroneum.com/.",
+            "slug": "electroneum",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2137.png",
+            "subreddit": "Electroneum",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "medium-of-exchange",
+                "wallet"
+            ],
+            "tag-names": [
+                "Mineable",
+                "Medium of Exchange",
+                "Wallet"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "http://electroneum.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/electroneum"
+                ],
+                "message_board": [
+                    "https://electroneum.com/blog/",
+                    "https://community.electroneum.com/"
+                ],
+                "chat": [
+                    "https://t.me/joinchat/DxoSakHOdk5mqsE-LelfVg"
+                ],
+                "explorer": [
+                    "https://blockexplorer.electroneum.com/"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Electroneum"
+                ],
+                "technical_doc": [],
+                "source_code": [
+                    "https://github.com/electroneum"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=2353282.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2017-11-02T00:00:00.000Z",
+            "twitter_username": "electroneum",
+            "is_hidden": 0
+        },
+        "GLM": {
+            "id": 1455,
+            "name": "Golem",
+            "symbol": "GLM",
+            "category": "token",
+            "description": "Golem (GLM) is a cryptocurrency and operates on the Ethereum platform. Golem has a current supply of 1,000,000,000. The last known price of Golem is 0.37836695 USD and is up 39.36 over the last 24 hours. It is currently trading on 59 active market(s) with $16,770,354.18 traded over the last 24 hours. More information can be found at https://golem.network/.",
+            "slug": "golem-network-tokens",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1455.png",
+            "subreddit": "GolemProject",
+            "notice": "For more details on the GNT to GLM migration, please read this [post](https://blog.golemproject.net/gnt-to-glm-migration/).",
+            "tags": [
+                "platform",
+                "distributed-computing",
+                "payments"
+            ],
+            "tag-names": [
+                "Platform",
+                "Distributed Computing",
+                "Payments"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://golem.network/"
+                ],
+                "twitter": [
+                    "https://twitter.com/golemproject"
+                ],
+                "message_board": [
+                    "https://blog.golemproject.net/"
+                ],
+                "chat": [],
+                "explorer": [
+                    "https://etherscan.io/address/0x7DD9c5Cba05E151C895FDe1CF355C9A1D5DA6429",
+                    "https://ethplorer.io/address/0x7DD9c5Cba05E151C895FDe1CF355C9A1D5DA6429",
+                    "https://etherscan.io/token/Golem",
+                    "https://ethplorer.io/address/0xa74476443119A942dE498590Fe1f2454d7D4aC0d"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/GolemProject"
+                ],
+                "technical_doc": [
+                    "https://golem.network/doc/Golemwhitepaper.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/golemfactory/golem"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1655002.0"
+                ]
+            },
+            "platform": {
+                "id": 1027,
+                "name": "Ethereum",
+                "symbol": "ETH",
+                "slug": "ethereum",
+                "token_address": "0x7DD9c5Cba05E151C895FDe1CF355C9A1D5DA6429"
+            },
+            "date_added": "2016-11-18T00:00:00.000Z",
+            "twitter_username": "golemproject",
+            "is_hidden": 0
+        },
+        "LINK": {
+            "id": 1975,
+            "name": "Chainlink",
+            "symbol": "LINK",
+            "category": "token",
+            "description": "Chainlink (LINK) is a cryptocurrency and operates on the Ethereum platform. Chainlink has a current supply of 1,000,000,000 with 408,509,556.43444455 in circulation. The last known price of Chainlink is 28.26612996 USD and is up 12.10 over the last 24 hours. It is currently trading on 476 active market(s) with $3,469,365,387.06 traded over the last 24 hours. More information can be found at https://chain.link/.",
+            "slug": "chainlink",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1975.png",
+            "subreddit": "chainlink",
+            "notice": "",
+            "tags": [
+                "platform",
+                "defi",
+                "oracles",
+                "smart-contracts",
+                "substrate",
+                "polkadot",
+                "dot-ecosystem"
+            ],
+            "tag-names": [
+                "Platform",
+                "DeFi",
+                "Oracles",
+                "Smart Contracts",
+                "Substrate",
+                "Polkadot",
+                "DOT Ecosystem"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PLATFORM",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://chain.link/",
+                    "https://smartcontract.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/chainlink"
+                ],
+                "message_board": [
+                    "https://medium.com/chainlink",
+                    "https://blog.chain.link/"
+                ],
+                "chat": [],
+                "explorer": [
+                    "https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca",
+                    "https://ethplorer.io/address/0x514910771af9ca656af840dff83e8264ecf986ca",
+                    "https://blockchair.com/ethereum/erc-20/token/0x514910771af9ca656af840dff83e8264ecf986ca",
+                    "https://eth.tokenview.com/en/token/0x514910771af9ca656af840dff83e8264ecf986ca",
+                    "https://bscscan.com/token/0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/chainlink"
+                ],
+                "technical_doc": [
+                    "https://link.smartcontract.com/whitepaper"
+                ],
+                "source_code": [
+                    "https://github.com/smartcontractkit/chainlink"
+                ],
+                "announcement": []
+            },
+            "platform": {
+                "id": 1027,
+                "name": "Ethereum",
+                "symbol": "ETH",
+                "slug": "ethereum",
+                "token_address": "0x514910771af9ca656af840dff83e8264ecf986ca"
+            },
+            "date_added": "2017-09-20T00:00:00.000Z",
+            "twitter_username": "chainlink",
+            "is_hidden": 0
+        },
+        "LTC": {
+            "id": 2,
+            "name": "Litecoin",
+            "symbol": "LTC",
+            "category": "coin",
+            "description": "Litecoin (LTC) is a cryptocurrency . Users are able to generate LTC through the process of mining. Litecoin has a current supply of 66,546,040.24302989. The last known price of Litecoin is 187.28475933 USD and is up 12.37 over the last 24 hours. It is currently trading on 759 active market(s) with $8,516,221,592.44 traded over the last 24 hours. More information can be found at https://litecoin.org/.",
+            "slug": "litecoin",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2.png",
+            "subreddit": "litecoin",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "pow",
+                "scrypt",
+                "medium-of-exchange",
+                "binance-chain"
+            ],
+            "tag-names": [
+                "Mineable",
+                "PoW",
+                "Scrypt",
+                "Medium of Exchange",
+                "Binance Chain"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PLATFORM"
+            ],
+            "urls": {
+                "website": [
+                    "https://litecoin.org/"
+                ],
+                "twitter": [
+                    "https://twitter.com/LitecoinProject"
+                ],
+                "message_board": [
+                    "https://litecointalk.io/",
+                    "https://litecoin-foundation.org/"
+                ],
+                "chat": [
+                    "https://telegram.me/litecoin"
+                ],
+                "explorer": [
+                    "https://blockchair.com/litecoin",
+                    "https://chainz.cryptoid.info/ltc/",
+                    "http://explorer.litecoin.net/chain/Litecoin",
+                    "https://ltc.tokenview.com/en",
+                    "https://bscscan.com/token/0x4338665cbb7b2485a8855a139b75d5e34ab0db94"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/litecoin"
+                ],
+                "technical_doc": [],
+                "source_code": [
+                    "https://github.com/litecoin-project/litecoin"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=47417.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2013-04-28T00:00:00.000Z",
+            "twitter_username": "LitecoinProject",
+            "is_hidden": 0
+        },
+        "MIOTA": {
+            "id": 1720,
+            "name": "IOTA",
+            "symbol": "MIOTA",
+            "category": "coin",
+            "description": "IOTA (MIOTA) is a cryptocurrency . IOTA has a current supply of 2,779,530,283. The last known price of IOTA is 1.24800932 USD and is up 26.28 over the last 24 hours. It is currently trading on 71 active market(s) with $306,021,037.44 traded over the last 24 hours. More information can be found at https://www.iota.org/.",
+            "slug": "iota",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1720.png",
+            "subreddit": "Iota",
+            "notice": "",
+            "tags": [
+                "dag",
+                "medium-of-exchange",
+                "iot",
+                "sharing-economy"
+            ],
+            "tag-names": [
+                "DAG",
+                "Medium of Exchange",
+                "IoT",
+                "Sharing Economy"
+            ],
+            "tag-groups": [
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.iota.org/"
+                ],
+                "twitter": [
+                    "https://twitter.com/iota"
+                ],
+                "message_board": [
+                    "https://forum.iota.org"
+                ],
+                "chat": [
+                    "https://discord.iota.org/"
+                ],
+                "explorer": [
+                    "https://thetangle.org/",
+                    "http://explorer.iota.org/?"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Iota"
+                ],
+                "technical_doc": [
+                    "https://iota.org/IOTA_Whitepaper.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/iotaledger"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1216479.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2017-06-13T00:00:00.000Z",
+            "twitter_username": "iota",
+            "is_hidden": 0
+        },
+        "NPXS": {
+            "id": 2603,
+            "name": "Pundi X",
+            "symbol": "NPXS",
+            "category": "token",
+            "description": "Pundi X (NPXS) is a cryptocurrency and operates on the Ethereum platform. Pundi X has a current supply of 258,498,693,019.07 with 235,514,908,114.9478 in circulation. The last known price of Pundi X is 0.00258708 USD and is up 21.27 over the last 24 hours. It is currently trading on 57 active market(s) with $603,586,728.88 traded over the last 24 hours. More information can be found at https://pundix.com/.",
+            "slug": "pundi-x",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2603.png",
+            "subreddit": "",
+            "notice": "",
+            "tags": [
+                "medium-of-exchange"
+            ],
+            "tag-names": [
+                "Medium of Exchange"
+            ],
+            "tag-groups": [
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://pundix.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/PundiXLabs"
+                ],
+                "message_board": [
+                    "https://medium.com/pundix"
+                ],
+                "chat": [
+                    "https://t.me/pundix"
+                ],
+                "explorer": [
+                    "https://etherscan.io/token/0xa15c7ebe1f07caf6bff097d8a589fb8ac49ae5b3",
+                    "https://ethplorer.io/address/0xa15c7ebe1f07caf6bff097d8a589fb8ac49ae5b3"
+                ],
+                "reddit": [],
+                "technical_doc": [
+                    "https://pundix.com/pdf/PundiX_Whitepaper_EN_Ver.pdf"
+                ],
+                "source_code": [],
+                "announcement": []
+            },
+            "platform": {
+                "id": 1027,
+                "name": "Ethereum",
+                "symbol": "ETH",
+                "slug": "ethereum",
+                "token_address": "0xa15c7ebe1f07caf6bff097d8a589fb8ac49ae5b3"
+            },
+            "date_added": "2018-03-22T00:00:00.000Z",
+            "twitter_username": "PundiXLabs",
+            "is_hidden": 0
+        },
+        "RDD": {
+            "id": 118,
+            "name": "ReddCoin",
+            "symbol": "RDD",
+            "category": "coin",
+            "description": "ReddCoin (RDD) is a cryptocurrency . ReddCoin has a current supply of 28,808,713,173.78866. The last known price of ReddCoin is 0.00478431 USD and is up 31.92 over the last 24 hours. It is currently trading on 13 active market(s) with $2,768,271.09 traded over the last 24 hours. More information can be found at http://www.reddcoin.com/.",
+            "slug": "redd",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/118.png",
+            "subreddit": "reddcoin",
+            "notice": "",
+            "tags": [
+                "hybrid-pow-pos",
+                "scrypt",
+                "media",
+                "content-creation"
+            ],
+            "tag-names": [
+                "Hybrid - PoW & PoS",
+                "Scrypt",
+                "Media",
+                "Content Creation"
+            ],
+            "tag-groups": [
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "http://www.reddcoin.com/",
+                    "https://redd.love/"
+                ],
+                "twitter": [
+                    "https://twitter.com/reddcoin"
+                ],
+                "message_board": [
+                    "https://www.reddcointalk.org/",
+                    "https://bitcointalk.org/index.php?topic=5228210"
+                ],
+                "chat": [],
+                "explorer": [
+                    "http://live.reddcoin.com/",
+                    "https://rdd.tokenview.com/en"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/reddcoin"
+                ],
+                "technical_doc": [
+                    "https://wiki.reddcoin.com/Technical_Information"
+                ],
+                "source_code": [
+                    "https://github.com/reddcoin-project/reddcoin"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=423597.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2014-02-10T00:00:00.000Z",
+            "twitter_username": "reddcoin",
+            "is_hidden": 0
+        },
+        "RVN": {
+            "id": 2577,
+            "name": "Ravencoin",
+            "symbol": "RVN",
+            "category": "coin",
+            "description": "Ravencoin (RVN) is a cryptocurrency . Users are able to generate RVN through the process of mining. Ravencoin has a current supply of 8,203,040,000. The last known price of Ravencoin is 0.19302094 USD and is up 31.44 over the last 24 hours. It is currently trading on 82 active market(s) with $680,493,129.85 traded over the last 24 hours. More information can be found at https://ravencoin.org/.",
+            "slug": "ravencoin",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2577.png",
+            "subreddit": "Ravencoin",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "platform",
+                "collectibles-nfts",
+                "crowdfunding"
+            ],
+            "tag-names": [
+                "Mineable",
+                "Platform",
+                "Collectibles & NFTs",
+                "Crowdfunding"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://ravencoin.org/",
+                    "https://getravencoin.org/"
+                ],
+                "twitter": [
+                    "https://twitter.com/ravencoin"
+                ],
+                "message_board": [
+                    "https://medium.com/@ravencoin"
+                ],
+                "chat": [
+                    "https://t.me/RavencoinDev",
+                    "https://discordapp.com/invite/CqbfUZd"
+                ],
+                "explorer": [
+                    "https://ravencoin.network/",
+                    "https://rvn.tokenview.com/en/"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Ravencoin"
+                ],
+                "technical_doc": [
+                    "https://ravencoin.org/whitepaper/"
+                ],
+                "source_code": [
+                    "https://github.com/RavenProject/Ravencoin"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=3238497"
+                ]
+            },
+            "platform": null,
+            "date_added": "2018-03-10T00:00:00.000Z",
+            "twitter_username": "ravencoin",
+            "is_hidden": 0
+        },
+        "SC": {
+            "id": 1042,
+            "name": "Siacoin",
+            "symbol": "SC",
+            "category": "coin",
+            "description": "Siacoin (SC) is a cryptocurrency . Users are able to generate SC through the process of mining. Siacoin has a current supply of 47,054,962,992. The last known price of Siacoin is 0.01135672 USD and is up 18.85 over the last 24 hours. It is currently trading on 50 active market(s) with $95,070,594.55 traded over the last 24 hours. More information can be found at https://sia.tech/.",
+            "slug": "siacoin",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1042.png",
+            "subreddit": "Siacoin",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "pow",
+                "blake2b",
+                "platform",
+                "distributed-computing",
+                "filesharing"
+            ],
+            "tag-names": [
+                "Mineable",
+                "PoW",
+                "Blake2b",
+                "Platform",
+                "Distributed Computing",
+                "Filesharing"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://sia.tech/"
+                ],
+                "twitter": [
+                    "https://twitter.com/SiaTechHQ"
+                ],
+                "message_board": [],
+                "chat": [
+                    "https://discord.gg/sia"
+                ],
+                "explorer": [
+                    "https://siastats.info/",
+                    "https://sc.tokenview.com/"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Siacoin"
+                ],
+                "technical_doc": [
+                    "https://sia.tech/sia.pdf"
+                ],
+                "source_code": [
+                    "https://gitlab.com/NebulousLabs"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1060294.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2015-08-26T00:00:00.000Z",
+            "twitter_username": "SiaTechHQ",
+            "is_hidden": 0
+        },
+        "STRAX": {
+            "id": 1343,
+            "name": "Stratis",
+            "symbol": "STRAX",
+            "category": "coin",
+            "description": "Stratis (STRAX) is a cryptocurrency launched in 2020. Stratis has a current supply of 128,571,524. The last known price of Stratis is 1.33557166 USD and is up 24.16 over the last 24 hours. It is currently trading on 22 active market(s) with $6,083,715.02 traded over the last 24 hours. More information can be found at http://stratisplatform.com/.",
+            "slug": "stratis",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1343.png",
+            "subreddit": "Stratisplatform",
+            "notice": "STRAT has swapped to STRAX. For more details, please click [here](https://www.stratisplatform.com/2020/11/17/strax-token-swap-process/)",
+            "tags": [
+                "hybrid-pow-pos",
+                "x13",
+                "platform",
+                "enterprise-solutions"
+            ],
+            "tag-names": [
+                "Hybrid - PoW & PoS",
+                "X13",
+                "Platform",
+                "Enterprise solutions"
+            ],
+            "tag-groups": [
+                "CONSENSUS_ALGORITHM",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "http://stratisplatform.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/stratisplatform"
+                ],
+                "message_board": [
+                    "https://www.stratisplatform.com/news/"
+                ],
+                "chat": [
+                    "https://discord.com/invite/9tDyfZs",
+                    "https://t.me/StratisPlatform"
+                ],
+                "explorer": [
+                    "https://chainz.cryptoid.info/strax/#",
+                    "https://strax.tokenview.com/"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Stratisplatform"
+                ],
+                "technical_doc": [
+                    "https://academy.stratisplatform.com/"
+                ],
+                "source_code": [
+                    "https://github.com/stratisproject"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1512202.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2016-08-12T00:00:00.000Z",
+            "twitter_username": "stratisplatform",
+            "is_hidden": 0
+        },
+        "TFUEL": {
+            "id": 3822,
+            "name": "Theta Fuel",
+            "symbol": "TFUEL",
+            "category": "coin",
+            "description": "Theta Fuel (TFUEL) is a cryptocurrency . Theta Fuel has a current supply of 5,247,795,200. The last known price of Theta Fuel is 0.09105085 USD and is up 32.95 over the last 24 hours. It is currently trading on 14 active market(s) with $32,965,402.78 traded over the last 24 hours. More information can be found at https://www.thetatoken.org.",
+            "slug": "theta-fuel",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3822.png",
+            "subreddit": "theta_network",
+            "notice": "",
+            "tags": [
+                "media",
+                "content-creation",
+                "payments"
+            ],
+            "tag-names": [
+                "Media",
+                "Content Creation",
+                "Payments"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.thetatoken.org"
+                ],
+                "twitter": [
+                    "https://twitter.com/Theta_Network"
+                ],
+                "message_board": [
+                    "https://medium.com/theta-network/theta-fuel-the-operational-token-of-the-theta-network-2f6823e2182e"
+                ],
+                "chat": [
+                    "https://discord.com/invite/QfMpeZBfKB"
+                ],
+                "explorer": [
+                    "https://explorer.thetatoken.org/"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/theta_network"
+                ],
+                "technical_doc": [
+                    "https://s3.us-east-2.amazonaws.com/assets.thetatoken.org/Theta-white-paper-latest.pdf?v=1553657855.509"
+                ],
+                "source_code": [
+                    "https://github.com/thetatoken"
+                ],
+                "announcement": []
+            },
+            "platform": null,
+            "date_added": "2019-03-28T00:00:00.000Z",
+            "twitter_username": "Theta_Network",
+            "is_hidden": 0
+        },
+        "TRX": {
+            "id": 1958,
+            "name": "TRON",
+            "symbol": "TRX",
+            "category": "coin",
+            "description": "TRON (TRX) is a cryptocurrency . TRON has a current supply of 100,850,743,811.66246 with 71,659,657,369.49 in circulation. The last known price of TRON is 0.0493356 USD and is up 19.36 over the last 24 hours. It is currently trading on 499 active market(s) with $2,777,786,918.50 traded over the last 24 hours. More information can be found at https://tron.network/.",
+            "slug": "tron",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png",
+            "subreddit": "Tronix",
+            "notice": "",
+            "tags": [
+                "media",
+                "payments"
+            ],
+            "tag-names": [
+                "Media",
+                "Payments"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://tron.network/"
+                ],
+                "twitter": [
+                    "https://twitter.com/justinsuntron"
+                ],
+                "message_board": [
+                    "https://medium.com/@Tronfoundation"
+                ],
+                "chat": [
+                    "http://t.me/tronnetworkEN"
+                ],
+                "explorer": [
+                    "https://tronscan.org/#/",
+                    "https://www.trxplorer.io/",
+                    "https://trx.tokenview.com/en"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/Tronix"
+                ],
+                "technical_doc": [
+                    "https://developers.tron.network/docs"
+                ],
+                "source_code": [
+                    "https://github.com/tronprotocol"
+                ],
+                "announcement": []
+            },
+            "platform": null,
+            "date_added": "2017-09-13T00:00:00.000Z",
+            "twitter_username": "justinsuntron",
+            "is_hidden": 0
+        },
+        "USDT": {
+            "id": 825,
+            "name": "Tether",
+            "symbol": "USDT",
+            "category": "token",
+            "description": "Tether (USDT) is a cryptocurrency launched in 2015and operates on the Ethereum platform. Tether has a current supply of 35,708,167,440.84519 with 34,761,096,221.73555 in circulation. The last known price of Tether is 1.00044052 USD and is up 0.13 over the last 24 hours. It is currently trading on 10939 active market(s) with $147,876,094,547.67 traded over the last 24 hours. More information can be found at https://tether.to.",
+            "slug": "tether",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png",
+            "subreddit": "",
+            "notice": "",
+            "tags": [
+                "store-of-value",
+                "payments",
+                "stablecoin",
+                "stablecoin-asset-backed"
+            ],
+            "tag-names": [
+                "Store of Value",
+                "Payments",
+                "Stablecoin",
+                "Stablecoin - Asset-Backed"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://tether.to"
+                ],
+                "twitter": [
+                    "https://twitter.com/tether_to"
+                ],
+                "message_board": [],
+                "chat": [],
+                "explorer": [
+                    "https://www.omniexplorer.info/asset/31",
+                    "https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7",
+                    "https://algoexplorer.io/asset/312769",
+                    "https://tronscan.org/#/token20/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+                    "https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955"
+                ],
+                "reddit": [],
+                "technical_doc": [
+                    "https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf"
+                ],
+                "source_code": [],
+                "announcement": []
+            },
+            "platform": {
+                "id": 1027,
+                "name": "Ethereum",
+                "symbol": "ETH",
+                "slug": "ethereum",
+                "token_address": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+            },
+            "date_added": "2015-02-25T00:00:00.000Z",
+            "twitter_username": "tether_to",
+            "is_hidden": 0
+        },
+        "VET": {
+            "id": 3077,
+            "name": "VeChain",
+            "symbol": "VET",
+            "category": "coin",
+            "description": "VeChain (VET) is a cryptocurrency . VeChain has a current supply of 86,712,634,466 with 64,315,576,989 in circulation. The last known price of VeChain is 0.04539668 USD and is up 18.05 over the last 24 hours. It is currently trading on 122 active market(s) with $783,971,211.03 traded over the last 24 hours. More information can be found at https://www.vechain.org/.",
+            "slug": "vechain",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/3077.png",
+            "subreddit": "vechain",
+            "notice": "",
+            "tags": [
+                "logistics",
+                "data-provenance",
+                "smart-contracts"
+            ],
+            "tag-names": [
+                "Logistics",
+                "Data Provenance",
+                "Smart Contracts"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.vechain.org/",
+                    "https://www.vechain.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/vechainofficial"
+                ],
+                "message_board": [],
+                "chat": [
+                    "https://t.me/vechain_official_english",
+                    "https://t.me/joinchat/GG4BlQwm19czcBGOewv40Q"
+                ],
+                "explorer": [
+                    "http://explore.vechain.org/",
+                    "https://insight.vecha.in",
+                    "https://explorer.vtho.net/"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/vechain"
+                ],
+                "technical_doc": [],
+                "source_code": [],
+                "announcement": []
+            },
+            "platform": null,
+            "date_added": "2017-08-22T00:00:00.000Z",
+            "twitter_username": "vechainofficial",
+            "is_hidden": 0
+        },
+        "XLM": {
+            "id": 512,
+            "name": "Stellar",
+            "symbol": "XLM",
+            "category": "coin",
+            "description": "Stellar (XLM) is a cryptocurrency . Stellar has a current supply of 50,001,803,478.79794 with 22,484,955,711.85644 in circulation. The last known price of Stellar is 0.42790836 USD and is up 20.67 over the last 24 hours. It is currently trading on 345 active market(s) with $2,201,880,552.49 traded over the last 24 hours. More information can be found at https://www.stellar.org.",
+            "slug": "stellar",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/512.png",
+            "subreddit": "stellar",
+            "notice": "",
+            "tags": [
+                "medium-of-exchange",
+                "enterprise-solutions",
+                "decentralized-exchange",
+                "smart-contracts"
+            ],
+            "tag-names": [
+                "Medium of Exchange",
+                "Enterprise solutions",
+                "Decentralized exchange",
+                "Smart Contracts"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.stellar.org"
+                ],
+                "twitter": [
+                    "https://twitter.com/StellarOrg"
+                ],
+                "message_board": [
+                    "https://stellarcommunity.org/",
+                    "https://galactictalk.org/"
+                ],
+                "chat": [
+                    "http://slack.stellar.org/"
+                ],
+                "explorer": [
+                    "https://dashboard.stellar.org/",
+                    "https://stellar.expert/explorer/public/",
+                    "https://steexp.com/",
+                    "https://blockchair.com/stellar"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/stellar"
+                ],
+                "technical_doc": [
+                    "https://www.stellar.org/papers/stellar-consensus-protocol.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/stellar"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1428573.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2014-08-05T00:00:00.000Z",
+            "twitter_username": "StellarOrg",
+            "is_hidden": 0
+        },
+        "XMR": {
+            "id": 328,
+            "name": "Monero",
+            "symbol": "XMR",
+            "category": "coin",
+            "description": "Monero (XMR) is a cryptocurrency . Users are able to generate XMR through the process of mining. Monero has a current supply of 17,847,582.74481671. The last known price of Monero is 217.94631213 USD and is up 17.75 over the last 24 hours. It is currently trading on 185 active market(s) with $1,006,901,503.69 traded over the last 24 hours. More information can be found at https://ww.getmonero.org/.",
+            "slug": "monero",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/328.png",
+            "subreddit": "monero",
+            "notice": "",
+            "tags": [
+                "mineable",
+                "pow",
+                "medium-of-exchange",
+                "ringct"
+            ],
+            "tag-names": [
+                "Mineable",
+                "PoW",
+                "Medium of Exchange",
+                "RingCT"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://ww.getmonero.org/"
+                ],
+                "twitter": [
+                    "https://twitter.com/monero"
+                ],
+                "message_board": [
+                    "https://forum.getmonero.org/",
+                    "https://forum.monero.space/"
+                ],
+                "chat": [
+                    "https://telegram.me/monero"
+                ],
+                "explorer": [
+                    "http://moneroblocks.info/",
+                    "http://chainradar.com/xmr/blocks",
+                    "https://xmr.tokenview.com/",
+                    "https://blockchair.com/monero"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/monero"
+                ],
+                "technical_doc": [
+                    "https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/monero-project/monero"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=583449.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2014-05-21T00:00:00.000Z",
+            "twitter_username": "monero",
+            "is_hidden": 0
+        },
+        "XRP": {
+            "id": 52,
+            "name": "XRP",
+            "symbol": "XRP",
+            "category": "coin",
+            "description": "XRP (XRP) is a cryptocurrency . XRP has a current supply of 99,990,831,162 with 45,404,028,640 in circulation. The last known price of XRP is 0.49027986 USD and is up 12.80 over the last 24 hours. It is currently trading on 675 active market(s) with $9,420,025,857.84 traded over the last 24 hours. More information can be found at https://ripple.com/xrp/.",
+            "slug": "xrp",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/52.png",
+            "subreddit": "ripple",
+            "notice": "",
+            "tags": [
+                "medium-of-exchange",
+                "enterprise-solutions",
+                "binance-chain"
+            ],
+            "tag-names": [
+                "Medium of Exchange",
+                "Enterprise solutions",
+                "Binance Chain"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PLATFORM"
+            ],
+            "urls": {
+                "website": [
+                    "https://ripple.com/xrp/"
+                ],
+                "twitter": [
+                    "https://twitter.com/Ripple"
+                ],
+                "message_board": [
+                    "http://www.xrpchat.com/"
+                ],
+                "chat": [
+                    "https://t.me/Ripple"
+                ],
+                "explorer": [
+                    "https://xrpcharts.ripple.com/#/graph/",
+                    "https://bithomp.com/explorer/",
+                    "https://xrpscan.com/",
+                    "https://blockchair.com/ripple",
+                    "https://bscscan.com/token/0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/ripple"
+                ],
+                "technical_doc": [
+                    "https://ripple.com/files/ripple_consensus_whitepaper.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/ripple"
+                ],
+                "announcement": []
+            },
+            "platform": null,
+            "date_added": "2013-08-04T00:00:00.000Z",
+            "twitter_username": "Ripple",
+            "is_hidden": 0
+        },
+        "XTZ": {
+            "id": 2011,
+            "name": "Tezos",
+            "symbol": "XTZ",
+            "category": "coin",
+            "description": "Tezos (XTZ) is a cryptocurrency launched in 2018. Tezos has a current supply of 761,040,383.03793. The last known price of Tezos is 3.84614354 USD and is up 18.79 over the last 24 hours. It is currently trading on 159 active market(s) with $602,309,598.81 traded over the last 24 hours. More information can be found at https://www.tezos.com/.",
+            "slug": "tezos",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2011.png",
+            "subreddit": "tezos",
+            "notice": "",
+            "tags": [
+                "platform",
+                "enterprise-solutions",
+                "smart-contracts",
+                "binance-chain",
+                "polychain-capital-portfolio"
+            ],
+            "tag-names": [
+                "Platform",
+                "Enterprise solutions",
+                "Smart Contracts",
+                "Binance Chain",
+                "Polychain Capital Portfolio"
+            ],
+            "tag-groups": [
+                "PROPERTY",
+                "PROPERTY",
+                "PROPERTY",
+                "PLATFORM",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "https://www.tezos.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/tezos"
+                ],
+                "message_board": [
+                    "https://forum.tezosagora.org/"
+                ],
+                "chat": [
+                    "https://t.me/tezosplatform",
+                    "https://riot.tzchat.org/"
+                ],
+                "explorer": [
+                    "https://tzstats.com/",
+                    "https://tezblock.io/",
+                    "https://tezos.id/",
+                    "https://tzkt.io/",
+                    "https://bscscan.com/token/0x16939ef78684453bfdfb47825f8a5f714f12623a"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/tezos"
+                ],
+                "technical_doc": [
+                    "https://tezos.gitlab.io/"
+                ],
+                "source_code": [
+                    "https://gitlab.com/tezos/tezos"
+                ],
+                "announcement": [
+                    "https://discord.gg/e6dCF7B"
+                ]
+            },
+            "platform": null,
+            "date_added": "2017-10-06T00:00:00.000Z",
+            "twitter_username": "tezos",
+            "is_hidden": 0
+        },
+        "XVG": {
+            "id": 693,
+            "name": "Verge",
+            "symbol": "XVG",
+            "category": "coin",
+            "description": "Verge (XVG) is a cryptocurrency . Users are able to generate XVG through the process of mining. Verge has a current supply of 16,432,239,965.691751. The last known price of Verge is 0.02093022 USD and is up 21.74 over the last 24 hours. It is currently trading on 44 active market(s) with $26,721,962.39 traded over the last 24 hours. More information can be found at http://vergecurrency.com/.",
+            "slug": "verge",
+            "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/693.png",
+            "subreddit": "vergecurrency",
+            "notice": "We have received reports from the Verge team that withdrawals are impeded on Yobit.",
+            "tags": [
+                "mineable",
+                "multiple-algorithms",
+                "medium-of-exchange",
+                "privacy"
+            ],
+            "tag-names": [
+                "Mineable",
+                "Multiple algorithms",
+                "Medium of Exchange",
+                "Privacy"
+            ],
+            "tag-groups": [
+                "OTHER",
+                "CONSENSUS_ALGORITHM",
+                "PROPERTY",
+                "PROPERTY"
+            ],
+            "urls": {
+                "website": [
+                    "http://vergecurrency.com/"
+                ],
+                "twitter": [
+                    "https://twitter.com/vergecurrency"
+                ],
+                "message_board": [],
+                "chat": [
+                    "https://t.me/VERGExvg",
+                    "https://discord.gg/vergecurrency"
+                ],
+                "explorer": [
+                    "https://verge-blockchain.info/",
+                    "https://xvg.tokenview.com/"
+                ],
+                "reddit": [
+                    "https://reddit.com/r/vergecurrency"
+                ],
+                "technical_doc": [
+                    "https://vergecurrency.com/static/blackpaper/verge-blackpaper-v5.0.pdf"
+                ],
+                "source_code": [
+                    "https://github.com/vergecurrency"
+                ],
+                "announcement": [
+                    "https://bitcointalk.org/index.php?topic=1365894.0"
+                ]
+            },
+            "platform": null,
+            "date_added": "2014-10-25T00:00:00.000Z",
+            "twitter_username": "vergecurrency",
+            "is_hidden": 0
+        }
+    }
+}

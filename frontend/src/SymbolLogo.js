@@ -1,16 +1,20 @@
 
 
-function App() {
+function Logo(props) {
+  const url = `https://s2.coinmarketcap.com/static/img/coins/32x32/${props.id}.png`;
+  
   return (
     <div>  
         <img 
-    src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=010" 
-    style={{height: "30px"}}
-    className="Symbol-logo"
-    alt="logo"
-  />
+            // src={`https://cryptoicons.org/api/color/${props.symbol}/30/000000`}
+            // src={`https://cryptoicons.org/api/icon/${props.symbol}/30`}
+            src={url}
+            style={{height: "30px", position: "relative", top: "50%", transform: "translateY(-50%)"}}
+            className="Symbol-logo"
+            alt={props.symbol}
+        />
     </div>
   );
 }
 
-export default App;
+export default Logo;

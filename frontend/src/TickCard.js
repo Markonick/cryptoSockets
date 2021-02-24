@@ -1,27 +1,24 @@
 import React, { useState, useEffect }  from "react";
 // import { useHistory } from "react-router-dom";
+import moment from 'moment';
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Link from "@material-ui/core/Link";
 import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Tick from "./Tick";
 import SymbolLogo from './SymbolLogo'
 
-const statusColor = {
-    "IN PROGRESS": "yellow",
-    "NEW": "aqua",
-    "COMPLETED": "green"
-  };
-
 const useStyles = makeStyles(theme => ({
     root: {
-        width: "70%",
-        height: "40px",
+        width: "40%",
+        height: "20px",
         background: "rgb(15, 15, 15)",
         marginLeft: "15%",
         marginRight: "15%",
-        // marginTop: "20px",
+        marginBottom: "8px",
         borderRadius: "15px",
         color: "white",
         padding: theme.spacing(2, 1),
@@ -37,34 +34,25 @@ const useStyles = makeStyles(theme => ({
         fontSize: 12,
         fontStyle: "normal",
         fontWeight: "100",
-        fontFamily: "Helvetica",
+        // fontFamily: "Helvetica",
+        fontFamily: 'normal 100%/1.5 "Dosis", sans-serif',
         WebkitFontSmoothing: 'antialiased',
     },
     content: {
         padding: 10,
+        fontSize: 18,
+        fontStyle: "normal",
+        fontWeight: "100",
+        // fontFamily: "Helvetica",
+        fontFamily: 'normal 100%/1.5 "Dosis", sans-serif',
+        WebkitFontSmoothing: 'antialiased',
     }
 }));
 
 function TickCard(props) {
     const classes = useStyles();
     // const history = useHistory();
-
-    const chipColor = statusColor["NEW"];
- 
-    const chip = (
-        <Chip
-        style={{
-            color: chipColor,
-            borderColor: chipColor,
-            borderWidth: "thin",
-            width: "120px",
-            // marginTop: "10%",
-            cursor: "pointer",
-        }}
-        label="TODO"
-        variant="outlined"
-        />
-    );
+    let tick = Tick(props.symbol, props.currency)
 
     function handleTickClick(e) {
         e.preventDefault();
@@ -72,26 +60,44 @@ function TickCard(props) {
         // history.push(`/`});
     }
 
-    const logo = <SymbolLogo/>
-    const tick = Tick()
+    const price = tick.price
+    const change = tick.change
+
+    const color = change >= 0 ? change == 0 ? "white": "green" : "red"
     
-    let color = ""
-    let tickItems = ""
-    
-    color = tick.change > 0 ? "green" : "red"
-    tickItems = Object.keys(tick).map((key) => {
-        let item = tick[key]
-        if(item !== undefined & item!== color) {
-            item = item.toFixed(2)
-        }
-        
-        return <p style={{color: color}} className={classes.title}>{key}: {item}</p>
-    })
-    console.log(tickItems)
+    const logo = <SymbolLogo id={props.id} />
+    const symbolCurrency = 
+        (<div style={{
+            fontSize: 16,
+            fontStyle: "normal",
+            fontWeight: "100",
+            fontFamily: 'normal 100%/1.5 "Dosis", sans-serif',
+            // fontFamily: 'Arial,Helvetica,"Nimbus Sans L",sans-serif',
+        }}
+        >
+            {props.symbol}/{props.currency}
+        </div>)
+    const tickItems = Object.keys(tick).map((key) => <p style={{color: color}} className={classes.title}>{key}: {tick[key]}</p>)
+    const chip = (color) => {
+        return (<Chip
+            style={{
+                color: color,
+                borderColor: color,
+                borderWidth: "thin",
+                width: "80px",
+                // marginTop: "10%",
+                cursor: "pointer",
+                //  position: "relative", top: "50%", transform: "translateY(-50%)"
+            }}
+            label={color === "green" ?  "UP": color === "white" ? "-" : "DOWN"}
+            variant="outlined"
+        />)
+    }
     const cardItems = [
         logo,
+        symbolCurrency,
         tickItems,
-        chip
+        chip(color)
     ];
 
     return  (
