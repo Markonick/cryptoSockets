@@ -8,8 +8,11 @@ import Link from "@material-ui/core/Link";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import Tick from "./Tick";
 import SymbolLogo from './SymbolLogo'
+import up from './assets/images/up.png'
+import down from './assets/images/down.png'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -79,7 +82,8 @@ function TickCard(props) {
         </div>)
     const tickItems = Object.keys(tick).map((key) => <p style={{color: color}} className={classes.title}>{key}: {tick[key]}</p>)
     const chip = (color) => {
-        return (<Chip
+        return (
+        <Chip
             style={{
                 color: color,
                 borderColor: color,
@@ -93,11 +97,20 @@ function TickCard(props) {
             variant="outlined"
         />)
     }
+    const upDown = change > 0 ? <ArrowDropUpIcon style={{fill: 'green',}}/> : <ArrowDropDownIcon style={{fill: 'red'}}/>
+    // (
+    // <img 
+    //     src={change > 0? up : down}
+    //     style={{height: "20px", position: "relative", top: "50%", transform: "translateY(-50%)",}}
+    //     className="Symbol-logo"
+    //     alt={change > 0? "up" : "down"}
+    // />)
     const cardItems = [
         logo,
         symbolCurrency,
         tickItems,
-        chip(color)
+        // chip(color),
+        upDown,
     ];
 
     return  (
