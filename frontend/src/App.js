@@ -5,6 +5,7 @@ import GetSymbolId from './GetSymbolId'
 import GetSymbolIds from './GetSymbolIds'
 import CustomPagination from './CustomPagination'
 import Search from './Search'
+import Timeseries from './Timeseries'
 // import Ticks from './Ticks';
 import './App.css';
 
@@ -42,10 +43,10 @@ function App() {
   console.log(end)
 
   let paginatedSymbols = symbols.slice(start, end)
-
+  const miniSeries = <Timeseries/>
   const tickCards =  paginatedSymbols.map((symbol, i) => { 
     let id = GetSymbolId(symbol)
-    return <TickCard symbol={symbol} id={id} currency={"usdt"}/>
+    return <TickCard symbol={symbol} id={id} miniSeries={miniSeries} currency={"usdt"}/>
   })
 
   // let ids = GetSymbolIds()
@@ -60,6 +61,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Search func={handleSymbolSearch} />
+        
         <p><CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
         </p>    
         {tickCards}

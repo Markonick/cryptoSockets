@@ -110,6 +110,7 @@ function TickCard(props) {
         symbolCurrency,
         tickItems,
         // chip(color),
+        props.miniSeries,
         upDown,
     ];
 
