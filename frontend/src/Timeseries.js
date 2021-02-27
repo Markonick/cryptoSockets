@@ -1,17 +1,21 @@
-import React from "react";
+import React from 'react'
 import klines from './mockKlines'
+import { Line } from 'react-chartjs-2'
+import KlineData from './api/KlineData'
 
-import { Line } from "react-chartjs-2";
 const DATA_LEN = 100
-let testData = klines.map((item)=> item[1]).splice(400,500)
-console.log(testData)
+let mockData = klines.map((item)=> item[1]).splice(400,500)
+console.log(mockData)
+
+let apiData = KlineData()
+console.log(apiData)
 const data = {
   labels: [...Array(DATA_LEN).keys()],
   datasets: [
     {
     //   label: "First dataset",
     //   data: Array.from({length: DATA_LEN}, () => Math.floor(Math.random() * 1000)),
-      data: testData,
+      data: mockData,
       fill: false,
       backgroundColor: "rgba(75,192,192,0.2)",
       borderColor: "rgba(75,192,192,1)",
@@ -60,13 +64,8 @@ const options =
 
 export default function App() {
   return (
-    <div className="App" style={{
-        // height: "10px",
-        // width:"30%",
-        // position: "relative",
-         }}>
-      <Line data={data} width={75} height={50}
-  options={options} />
+    <div className="App" >
+      <Line data={data} width={75} height={50} options={options} />
     </div>
   );
 }
