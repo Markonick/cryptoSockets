@@ -14,12 +14,8 @@ function KlineData(params) {
   }, [])
 
   function getDataPoints() {
-    
     apiKline.getAll(params).then((res) => {
-      console.log(res)
-      let klineData = parseData(res)
-      console.log(klineData)
-      setData(klineData)
+      setData(res)
     })
   }
 

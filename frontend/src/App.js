@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TickCard from './TickCard';
 import GetSymbolId from './GetSymbolId'
 import CustomPagination from './CustomPagination'
 import Search from './Search'
-import Timeseries from './Timeseries'
+import TimeSeries from './TimeSeries'
 import TickTableHead from './TickTableHead'
 import './App.css';
 
@@ -22,8 +22,14 @@ const symbols = [
 
 function App() {
   
-  const [page, setPage] = React.useState(1)
-  const [symbol, setSymbol] = React.useState("")
+  const [page, setPage] = useState(1)
+  const [symbol, setSymbol] = useState("")
+  const [tickCards, setTickCards] = useState()
+
+  const pageCount = Math.ceil(symbols.length/PAGE_SIZE)
+  const start = (page - 1) * PAGE_SIZE
+  const end = start + PAGE_SIZE
+  const currency = "usdt"
 
   const handlePageChange = (event, value) => {
     setPage(value)
@@ -33,23 +39,16 @@ function App() {
     setSymbol(event.target.value)
   };
 
-  let pageCount = Math.ceil(symbols.length/PAGE_SIZE)
-  let start = (page - 1) * PAGE_SIZE
-  let end = start + PAGE_SIZE
-  let currency = "usdt"
-
   const createTickCards = (symbols) => {
     const tickCards =  symbols.map((symbol, i) => { 
       let params = {symbol: `${symbol}${currency}`.toUpperCase(), interval: "1m", limit: 100}
-      const miniSeries = <Timeseries params={params}/>
+      const miniSeries = <TimeSeries params={params}/>
       let id = GetSymbolId(symbol)
       return <TickCard symbol={symbol} id={id} miniSeries={miniSeries} currency={currency}/>
     })
 
     return tickCards
   }
-  
-  let paginatedTickCards = createTickCards(symbols).slice(start, end)
   
   let tickTableHead = <TickTableHead items={['Symbol', 'Price', 'Change', 'Mini-Series', '+/-']} />
 
@@ -60,7 +59,7 @@ function App() {
         <p>
           <CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
         </p>    
-        {[tickTableHead, ...paginatedTickCards]}
+        {[tickTableHead, ...createTickCards(symbols).slice(start, end)]}
       </header>
     </div>
   );

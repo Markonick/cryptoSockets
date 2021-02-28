@@ -5,7 +5,7 @@ const Tick = (symbol, currency) => {
     const [previousTick, setPreviousTick] = useState({});
     const [tickBuffer, setTickBuffer] = useState([]);
     const [diff, setDiff] = useState(0);
-
+    
     useEffect(() => {
         const subscribe = {
             "method": "SUBSCRIBE",

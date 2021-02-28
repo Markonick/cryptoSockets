@@ -6,7 +6,7 @@ import KlineData from './api/KlineData'
 const DATA_LEN = 100
 let mockData = klines.map((item)=> item[1]).splice(400,500)
 
-export default function Appp(props) {
+export default function TimeSeries(props) {
 let kleinData = KlineData(props.params)
 let prices = kleinData !== undefined ? kleinData.map((item)=> item[1]) : ""
 

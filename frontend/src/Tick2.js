@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Tick = (symbol) => {
+const Tick = (symbol, currency) => {
     const [price, setPrice] = useState(0);
     const [change, setChange] = useState(0);
 
@@ -8,7 +8,7 @@ const Tick = (symbol) => {
         const subscribe = {
             "method": "SUBSCRIBE",
             "params": [
-                `${symbol}@ticker`,
+                `${symbol.toLowerCase()}${currency}@ticker`,
             ],
             "id": 1
         }
@@ -22,7 +22,6 @@ const Tick = (symbol) => {
 
             let oldPrice = price;
             let newPrice = Number(incomingTick.c)
-            console.log(newPrice)
             let calculatedChange = calcChange(oldPrice, newPrice)
 
             setChange(calculatedChange.toFixed(2))
@@ -39,8 +38,6 @@ const Tick = (symbol) => {
 
     const calcChange = (prevPrice, newPrice) => {
         let change = newPrice - prevPrice
-        console.log(newPrice)
-        console.log(prevPrice)
 
         return change
     }
