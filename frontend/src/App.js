@@ -40,6 +40,7 @@ function App() {
   };
 
   const createTickCards = (symbols) => {
+    console.log('RUNNING CARD CALC!!!!!')
     const tickCards =  symbols.map((symbol, i) => { 
       let params = {symbol: `${symbol}${currency}`.toUpperCase(), interval: "1m", limit: 100}
       const miniSeries = <TimeSeries params={params}/>
@@ -50,6 +51,9 @@ function App() {
     return tickCards
   }
   
+  const cards = createTickCards(symbols)
+  let paginatedCards = cards.slice(start, end)
+  console.log(paginatedCards)
   let tickTableHead = <TickTableHead items={['Symbol', 'Price', 'Change', 'Mini-Series', '+/-']} />
 
   return (
@@ -59,7 +63,7 @@ function App() {
         <p>
           <CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
         </p>    
-        {[tickTableHead, ...createTickCards(symbols).slice(start, end)]}
+        {[tickTableHead, ...paginatedCards]}
       </header>
     </div>
   );
