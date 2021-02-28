@@ -39,17 +39,13 @@ function App() {
   };
 
   const handleSymbolSearch = event => {
-    console.log(event)
     setSymbol(event)
-    // console.log(symbol)
   };
 
   useEffect(() => {
     let filteredSymbols = symbols.filter(element => element.includes(symbol));
-    console.log(filteredSymbols)
 
     if(filteredSymbols.length > 0) {
-      console.log('FOUND IT!!!!')
       setSymbol(symbol)
       CreateTickCards(symbols.filter(element => element.includes(symbol)), "usdt")
     } 
@@ -57,7 +53,6 @@ function App() {
 
   const CreateTickCards = (symbols, currency) => {
       console.log('RUNNING CARD CALC')
-      console.log(symbols)
       const tickCards =  symbols.map((symbol, i) => { 
         const miniSeries = <TimeSeries params={{symbol: `${symbol}${currency}`.toUpperCase(), interval: "1m", limit: 100}}/>
         
@@ -70,7 +65,6 @@ function App() {
   useEffect(() => {CreateTickCards(symbols, "usdt")}, [page])
   // const cards = CreateTickCards(symbols.slice(start, end), "usdt")
   let paginatedCards = cards.slice(start, end)
-  console.log(paginatedCards)
   let tickTableHead = <TickTableHead items={['Symbol', 'Price', 'Change', 'Mini-Series', '+/-']} />
 
   return (
