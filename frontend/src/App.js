@@ -1,12 +1,10 @@
 import React from 'react';
 import TickCard from './TickCard';
-import Tick from './Tick';
 import GetSymbolId from './GetSymbolId'
-import GetSymbolIds from './GetSymbolIds'
 import CustomPagination from './CustomPagination'
 import Search from './Search'
 import Timeseries from './Timeseries'
-// import Ticks from './Ticks';
+import TickTableHead from './TickTableHead'
 import './App.css';
 
 const PAGE_SIZE = 10
@@ -21,7 +19,6 @@ const symbols = [
   "zks"  , "lrc"  , "omg"  , "pax"  , "husd" , "xwc"  , "zen"  , "btmx" , "qtum" , "hnt"  ,
   "KNDC" , "delta", "pib"  , "opt"  , "acdc"
 ]
-const currencies = ["usdt", "usdt", "usdt", "usdt", "usdt", "usdt", "usdt", ]
 
 function App() {
   
@@ -39,32 +36,31 @@ function App() {
   let pageCount = Math.ceil(symbols.length/PAGE_SIZE)
   let start = (page - 1) * PAGE_SIZE
   let end = start + PAGE_SIZE
-  console.log(start)
-  console.log(end)
+  let currency = "usdt"
 
-  let paginatedSymbols = symbols.slice(start, end)
-  const miniSeries = <Timeseries/>
-  const tickCards =  paginatedSymbols.map((symbol, i) => { 
-    let id = GetSymbolId(symbol)
-    return <TickCard symbol={symbol} id={id} miniSeries={miniSeries} currency={"usdt"}/>
-  })
+  const createTickCards = (symbols) => {
+    const tickCards =  symbols.map((symbol, i) => { 
+      let params = {symbol: `${symbol}${currency}`.toUpperCase(), interval: "1m", limit: 100}
+      const miniSeries = <Timeseries params={params}/>
+      let id = GetSymbolId(symbol)
+      return <TickCard symbol={symbol} id={id} miniSeries={miniSeries} currency={currency}/>
+    })
 
-  // let ids = GetSymbolIds()
+    return tickCards
+  }
   
-  // let pageCount = Math.ceil(ids.length/PAGE_SIZE)
-  // let paginatedSymbols = ids.slice(start, end)
-  // const tickCards =  paginatedSymbols.map((item) => { 
-  //   return <TickCard symbol={item.symbol} id={item.id} currency={"usdt"}/>
-  // })
+  let paginatedTickCards = createTickCards(symbols).slice(start, end)
   
+  let tickTableHead = <TickTableHead items={['Symbol', 'Price', 'Change', 'Mini-Series', '+/-']} />
+
   return (
     <div className="App">
       <header className="App-header">
         <Search func={handleSymbolSearch} />
-        
-        <p><CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
+        <p>
+          <CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
         </p>    
-        {tickCards}
+        {[tickTableHead, ...paginatedTickCards]}
       </header>
     </div>
   );

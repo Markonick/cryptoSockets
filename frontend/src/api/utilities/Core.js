@@ -4,8 +4,8 @@ export default class ApiCore {
   constructor(options) {
     
     if (options.getAll) {
-      this.getAll = () => {
-        return apiProvider.getAll(options.url)
+      this.getAll = (params) => {
+        return apiProvider.getAll(options.url, params)
       };
     }
 

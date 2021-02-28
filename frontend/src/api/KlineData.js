@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ApiCore from './utilities/Core'
 
 const apiKline = new ApiCore({
@@ -6,18 +6,20 @@ const apiKline = new ApiCore({
   url: 'klines',
 });
 
-export default function KlineData() {
-  const [data, setData] = useState([])
+function KlineData(params) {
+  const [data, setData] = useState()
 
   useEffect(() => {
     getDataPoints()
   }, [])
 
   function getDataPoints() {
-    apiKline.getAll().then((res) => {
-      let data = parseData(res.results.data)
-      console.log(data)
-      setData(data)
+    
+    apiKline.getAll(params).then((res) => {
+      console.log(res)
+      let klineData = parseData(res)
+      console.log(klineData)
+      setData(klineData)
     })
   }
 
@@ -29,4 +31,6 @@ export default function KlineData() {
   }
 
   return data
-}
+};
+
+export default KlineData;

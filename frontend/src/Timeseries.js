@@ -5,17 +5,18 @@ import KlineData from './api/KlineData'
 
 const DATA_LEN = 100
 let mockData = klines.map((item)=> item[1]).splice(400,500)
-console.log(mockData)
 
-let apiData = KlineData()
-console.log(apiData)
+export default function Appp(props) {
+let kleinData = KlineData(props.params)
+let prices = kleinData !== undefined ? kleinData.map((item)=> item[1]) : ""
+
 const data = {
   labels: [...Array(DATA_LEN).keys()],
   datasets: [
     {
     //   label: "First dataset",
     //   data: Array.from({length: DATA_LEN}, () => Math.floor(Math.random() * 1000)),
-      data: mockData,
+      data: prices,
       fill: false,
       backgroundColor: "rgba(75,192,192,0.2)",
       borderColor: "rgba(75,192,192,1)",
@@ -62,7 +63,6 @@ const options =
     }
 }
 
-export default function App() {
   return (
     <div className="App" >
       <Line data={data} width={75} height={50} options={options} />

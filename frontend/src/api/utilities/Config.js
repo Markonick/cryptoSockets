@@ -3,7 +3,6 @@ import axios from "axios"
 import Swal from 'sweetalert2'
 
 let apiClient = {}
-
   apiClient = axios.create({
     // withCredentials: true,
     baseURL: process.env.REACT_APP_BASE_URL,
@@ -35,12 +34,13 @@ const custom5xxPopup = (traceId, httpErrorStatus) => {
 apiClient.interceptors.response.use(
   response => response,
   error => {
+    console.log(error)
     if (error.response.status >= 500 && error.response.status < 600) {
       console.log("ERROR RESPONSE in 500s is: ", error.response.status)
       custom5xxPopup("TraceId", error.response.status)
     } else if (error.response.status === 401) {
       console.log("ERROR RESPONSE is: ", error.response.status)
-    //   timedRedirectPopup();
+      custom5xxPopup("TraceId", error.response.status)
     } else {
       console.log("ERROR RESPONSE is: ", error.response.status)
       return Promise.reject(error)

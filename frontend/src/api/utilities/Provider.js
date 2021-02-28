@@ -5,9 +5,9 @@ import { handleResponse, handleError } from './Response';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const getAll = (resource) => { 
+const getAll = (resource, params) => { 
   return client 
-    .get(`${BASE_URL}/${resource}`) 
+    .get(`${BASE_URL}/${resource}`, {params: params}) 
     .then(handleResponse) 
     .catch(handleError)
 }; 

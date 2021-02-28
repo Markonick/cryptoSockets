@@ -31,7 +31,7 @@ services:
       CHOKIDAR_USEPOLLING: "true"
       PORT: ${PORT}
       NODE_ENV: ${NODE_ENV}
-      REACT_APP_BASE_URL: ${REACT_APP_BASE_URL}
+      REACT_APP_BASE_URL: "https://api.binance.com/api/v3"
       CMC_PRO_API_KEY: ${CMC_PRO_API_KEY}
     volumes:
       - ./frontend:/app
