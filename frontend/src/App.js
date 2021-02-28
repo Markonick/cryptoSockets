@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import CustomPagination from './CustomPagination'
-import Search from './Search'
+import SearchCoin from './SearchCoin'
 import TickTableHead from './TickTableHead'
-import CreateTickCards from './CreateTickCards'
+import TickCard from './TickCard';
+import TimeSeries from './TimeSeries';
+import GetSymbolId from './GetSymbolId';
+// import CreateTickCards from './CreateTickCards'
 import './App.css';
+import { CardHeader } from '@material-ui/core';
 
 const PAGE_SIZE = 10
 const symbols = [
@@ -15,14 +19,16 @@ const symbols = [
   "vgx"  , "ftm"  , "zec"  , "rune" , "cel"  , "ren"  , "nexo" , "zrx"  , "okb"  , "waves",
   "rev"  , "icx"  , "hbar" , "chsb" , "iost" , "dgb"  , "ont"  , "bnt"  , "nano" , "matic",
   "zks"  , "lrc"  , "omg"  , "pax"  , "husd" , "xwc"  , "zen"  , "btmx" , "qtum" , "hnt"  ,
-  "KNDC" , "delta", "pib"  , "opt"  , "acdc"
+  "KNDC" , "delta", "pib"  , "opt"  , "acdc", "eth",
 ]
 
 function App() {
   
   const [page, setPage] = useState(1)
   const [symbol, setSymbol] = useState("")
-  const [tickCards, setTickCards] = useState()
+  const [cards, setCards] = useState([])
+  const [series, setSeries] = useState([])
+  // const [tickCards, setTickCards] = useState()
 
   const pageCount = Math.ceil(symbols.length/PAGE_SIZE)
   const start = (page - 1) * PAGE_SIZE
@@ -33,18 +39,44 @@ function App() {
   };
 
   const handleSymbolSearch = event => {
-    setSymbol(event.target.value)
+    console.log(event)
+    setSymbol(event)
+    // console.log(symbol)
   };
+
+  useEffect(() => {
+    let filteredSymbols = symbols.filter(element => element.includes(symbol));
+    console.log(filteredSymbols)
+
+    if(filteredSymbols.length > 0) {
+      console.log('FOUND IT!!!!')
+      setSymbol(symbol)
+      CreateTickCards(symbols.filter(element => element.includes(symbol)), "usdt")
+    } 
+  }, [symbol])
+
+  const CreateTickCards = (symbols, currency) => {
+      console.log('RUNNING CARD CALC')
+      console.log(symbols)
+      const tickCards =  symbols.map((symbol, i) => { 
+        const miniSeries = <TimeSeries params={{symbol: `${symbol}${currency}`.toUpperCase(), interval: "1m", limit: 100}}/>
+        
+        return <TickCard symbol={symbol} id={GetSymbolId(symbol)} miniSeries={miniSeries} currency={currency}/>
+      })
+      setCards(tickCards)
   
-  const cards = CreateTickCards(symbols.slice(start, end), "usdt")
-  let paginatedCards = cards
+      // return tickCards
+    }
+  useEffect(() => {CreateTickCards(symbols, "usdt")}, [page])
+  // const cards = CreateTickCards(symbols.slice(start, end), "usdt")
+  let paginatedCards = cards.slice(start, end)
   console.log(paginatedCards)
   let tickTableHead = <TickTableHead items={['Symbol', 'Price', 'Change', 'Mini-Series', '+/-']} />
 
   return (
     <div className="App">
       <header className="App-header">
-        <Search func={handleSymbolSearch} />
+        <SearchCoin func={handleSymbolSearch} />
         <p>
           <CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
         </p>    

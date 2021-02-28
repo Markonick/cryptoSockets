@@ -14,5 +14,5 @@ export function handleResponse(response) {
     if (error.data) {
       return error.data;
     }
-    return error;
+    return [];
   }

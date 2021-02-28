@@ -11,12 +11,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Search(props) {
+export default function SearchCoin(props) {
   const classes = useStyles();
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      
       <TextField
         id="outlined-secondary"
         label="Find Crypto"

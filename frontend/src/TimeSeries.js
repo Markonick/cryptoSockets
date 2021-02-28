@@ -8,7 +8,6 @@ const DATA_LEN = 100
 
 export default function TimeSeries(props) {
   let klineData = KlineData(props.params)
-  console.log(klineData)
   let prices = klineData !== undefined ? klineData.map((item)=> item[1]) : ""
 
   const data = {
@@ -27,8 +26,25 @@ export default function TimeSeries(props) {
 
   const options = 
   {
-      responsive: false,
+      responsive: true,
       maintainAspectRatio: true,
+      padding: {
+          right: 50,
+          left: 50,
+          top: 50,
+          bottom: 50,
+      },
+      tooltips: {
+        tooltipFontSize: 8,
+        // tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>hrs",
+        // cutoutPercentage: 60,
+        // percentageInnerCutout : 70,
+        backgroundColor: '#000',
+        titleFontSize: 8,
+        titleFontColor: '#0066ff',
+        bodyFontColor: '#fff',
+        bodyFontSize: 8,
+      },
       legend: {
           display: false
       },

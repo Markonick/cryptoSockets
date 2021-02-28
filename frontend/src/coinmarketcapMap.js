@@ -1,13 +1,5 @@
-{
-    "status": {
-        "timestamp": "2021-02-24T10:42:16.871Z",
-        "error_code": 0,
-        "error_message": null,
-        "elapsed": 14,
-        "credit_count": 1,
-        "notice": null
-    },
-    "data": [
+
+const data  = [
         {
             "id": 1,
             "name": "Bitcoin",
@@ -63218,5 +63210,6 @@
                 "token_address": "0x336c21557185079F42F6fFC098aB572c87AE9435"
             }
         }
-    ]
-}
+]
+
+    export default data

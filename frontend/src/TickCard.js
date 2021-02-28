@@ -7,13 +7,15 @@ import Link from "@material-ui/core/Link";
 import CardContent from "@material-ui/core/CardContent";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+// import RemoveIcon from '@material-ui/icons/Remove';
+import StopIcon from '@material-ui/icons/Stop';
 import Tick from "./Tick";
 import SymbolLogo from './SymbolLogo'
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "51%",
-    height: "20px",
+    height: "16px",
     background: "rgb(15, 15, 15)",
     marginLeft: "15%",
     marginRight: "15%",
@@ -71,10 +73,10 @@ function TickCard(props) {
     
   const tickItems = Object.keys(tick).map((key) => <p style={{color: color}} className={classes.title}> {tick[key]} </p>)
       
-  const upDown = change > 0 ? 
-    <ArrowDropUpIcon style={{ fill: 'green', }} /> 
+  const upDown = change >= 0 ? change == 0 ? <StopIcon style={{ fill: 'yellow',}} fontSize='medium'/> :
+    <ArrowDropUpIcon style={{ fill: 'green', }} fontSize='medium'/> 
     : 
-    <ArrowDropDownIcon style={{fill: 'red'}} />
+    <ArrowDropDownIcon style={{fill: 'red'}} fontSize='medium'/>
   
   const logoAndSymbol = <div style={{ 
     display: 'flex', 
