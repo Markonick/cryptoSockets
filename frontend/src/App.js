@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import TickCard from './TickCard';
-import GetSymbolId from './GetSymbolId'
 import CustomPagination from './CustomPagination'
 import Search from './Search'
-import TimeSeries from './TimeSeries'
 import TickTableHead from './TickTableHead'
+import CreateTickCards from './CreateTickCards'
 import './App.css';
 
 const PAGE_SIZE = 10
@@ -29,7 +27,6 @@ function App() {
   const pageCount = Math.ceil(symbols.length/PAGE_SIZE)
   const start = (page - 1) * PAGE_SIZE
   const end = start + PAGE_SIZE
-  const currency = "usdt"
 
   const handlePageChange = (event, value) => {
     setPage(value)
@@ -38,21 +35,9 @@ function App() {
   const handleSymbolSearch = event => {
     setSymbol(event.target.value)
   };
-
-  const createTickCards = (symbols) => {
-    console.log('RUNNING CARD CALC!!!!!')
-    const tickCards =  symbols.map((symbol, i) => { 
-      let params = {symbol: `${symbol}${currency}`.toUpperCase(), interval: "1m", limit: 100}
-      const miniSeries = <TimeSeries params={params}/>
-      let id = GetSymbolId(symbol)
-      return <TickCard symbol={symbol} id={id} miniSeries={miniSeries} currency={currency}/>
-    })
-
-    return tickCards
-  }
   
-  const cards = createTickCards(symbols)
-  let paginatedCards = cards.slice(start, end)
+  const cards = CreateTickCards(symbols.slice(start, end), "usdt")
+  let paginatedCards = cards
   console.log(paginatedCards)
   let tickTableHead = <TickTableHead items={['Symbol', 'Price', 'Change', 'Mini-Series', '+/-']} />
 

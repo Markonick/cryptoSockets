@@ -42,8 +42,9 @@ apiClient.interceptors.response.use(
       console.log("ERROR RESPONSE is: ", error.response.status)
       custom5xxPopup("TraceId", error.response.status)
     } else {
-      console.log("ERROR RESPONSE is: ", error.response.status)
-      return Promise.reject(error)
+      console.log("ERROR RESPONSE is: ", error)
+      console.log("RETURN EMPTY ARRAY: ")
+      custom5xxPopup("TraceId", error)
     }
   })
 
