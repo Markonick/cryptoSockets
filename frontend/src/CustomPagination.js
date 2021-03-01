@@ -9,6 +9,12 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  page: {
+    fontStyle: "normal",
+    fontSize: 12,
+    fontWeight: "100",
+    fontFamily: 'normal 100%/1.5 "Dosis", sans-serif',
+  }
 }));
 
 export default function PaginationControlled(props) {
@@ -16,7 +22,7 @@ export default function PaginationControlled(props) {
 
   return (
     <div className={classes.root}>
-      <Typography>Page: {props.page}</Typography>
+      <Typography className={classes.page}>Page: {props.page}</Typography>
       <Pagination count={props.count} page={props.page} onChange={props.func} />
     </div>
   );

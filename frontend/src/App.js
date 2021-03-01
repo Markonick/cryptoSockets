@@ -7,7 +7,6 @@ import TimeSeries from './TimeSeries';
 import GetSymbolId from './GetSymbolId';
 // import CreateTickCards from './CreateTickCards'
 import './App.css';
-import { CardHeader } from '@material-ui/core';
 
 const PAGE_SIZE = 10
 const symbols = [

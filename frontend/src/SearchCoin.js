@@ -9,6 +9,21 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
   },
+  cssLabel: {
+    color: "gray"
+  },
+
+  cssOutlinedInput: {
+    "&$cssFocused $notchedOutline": {
+      borderColor: `gray`
+    }
+  },
+  cssFocused: {},
+
+  outline: {
+    borderWidth: "1px",
+    borderColor: "white !important"
+  }
 }));
 
 export default function SearchCoin(props) {
@@ -22,6 +37,19 @@ export default function SearchCoin(props) {
         variant="outlined"
         color="secondary"
         onChange={(event) => {props.func(event.target.value)}} 
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused
+          }
+        }}
+        InputProps={{
+          classes: {
+            root: classes.cssOutlinedInput,
+            focused: classes.cssFocused,
+            notchedOutline: classes.outline
+          },
+        }}
       />
     </form>
   );
