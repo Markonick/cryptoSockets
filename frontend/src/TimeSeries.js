@@ -7,6 +7,7 @@ const DATA_LEN = 100
 // const mockData = klines.map((item)=> item[1]).splice(400,500)
 
 export default function TimeSeries(props) {
+
   let klineData = KlineData(props.params)
   let prices = klineData !== undefined ? klineData.map((item)=> item[1]) : ""
 

@@ -10,7 +10,9 @@ function KlineData(params) {
   const [data, setData] = useState()
 
   useEffect(() => {
-    getDataPoints()
+    setInterval(async () => { 
+      getDataPoints()
+    }, 5000);
   }, [])
 
   function getDataPoints() {

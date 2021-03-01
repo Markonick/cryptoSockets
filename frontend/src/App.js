@@ -41,34 +41,35 @@ function App() {
     setSymbol(event)
   };
 
+  useEffect(() => {CreateTickCards(symbols, "usdt")}, [page])
   useEffect(() => {
-    let filteredSymbols = symbols.filter(element => element.includes(symbol));
+    let filteredSymbolsByText = symbols.filter(element => element.includes(symbol));
 
-    if(filteredSymbols.length > 0) {
-      setSymbol(symbol)
+    if(filteredSymbolsByText.length > 0) {
       CreateTickCards(symbols.filter(element => element.includes(symbol)), "usdt")
     } 
   }, [symbol])
 
   const CreateTickCards = (symbols, currency) => {
       console.log('RUNNING CARD CALC')
-      const tickCards =  symbols.map((symbol, i) => { 
+      const tickCards = symbols.map((symbol, i) => { 
         const miniSeries = <TimeSeries params={{symbol: `${symbol}${currency}`.toUpperCase(), interval: "1m", limit: 100}}/>
-        
+      
         return <TickCard symbol={symbol} id={GetSymbolId(symbol)} miniSeries={miniSeries} currency={currency}/>
       })
+
       setCards(tickCards)
-  
-      // return tickCards
     }
-  useEffect(() => {CreateTickCards(symbols, "usdt")}, [page])
-  // const cards = CreateTickCards(symbols.slice(start, end), "usdt")
+
   let paginatedCards = cards.slice(start, end)
   let tickTableHead = <TickTableHead items={['Symbol', 'Price', 'Change', 'Mini-Series', '+/-']} />
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App" >
+      <header className="App-header" style={{
+      display: 'flex', 
+      flexDirection: "column",
+      justifyContent: 'start', }}>
         <SearchCoin func={handleSymbolSearch} />
         <p>
           <CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
