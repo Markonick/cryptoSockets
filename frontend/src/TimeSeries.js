@@ -4,43 +4,40 @@ import { Line } from 'react-chartjs-2'
 import KlineData from './api/KlineData'
 import Tick from "./Tick";
 
-const DATA_LEN = 99
-// const mockData = klines.map((item)=> item[1]).splice(400,500)
+const DATA_LEN = 100-1
 
 export default function TimeSeries(props) {
   const [tickBuffer, SetTickBuffer] = useState([])
-  const tick = Tick(props.symbol, props.currency)
-
-  const fifo = (size, incomingTick) => {
-    let tempBuffer = tickBuffer
-    console.log(incomingTick)
-    tempBuffer.push(incomingTick.price)
+  // const tick = Tick(props.symbol, props.currency)
+  const klineData = KlineData(props.params)
+  let prices = klineData !== undefined ? klineData.map((item)=> item[1]) : ""
+  const fifo = (buffer, size, incomingTick) => {
+    buffer.push(incomingTick.price)
    
-    if (tempBuffer.length > size) {
-        tempBuffer.shift()
+    if (buffer.length > size) {
+      buffer.shift()
     }
 
-    return tempBuffer
+    return buffer
   }
   
-  useEffect(() => {
-    console.log(tickBuffer)
-    setInterval( () => { 
-      console.log(tick)
-      let buffer = fifo(100, tick)
+  // useEffect(() => {
+  //   console.log(tickBuffer)
+  //   setInterval( () => { 
+  //     let buffer = fifo(tickBuffer, 100, tick)
 
-      SetTickBuffer(buffer)
-    }, 1000);
+  //     SetTickBuffer(buffer)
+  //   }, 1000);
     
-  }, [tickBuffer])
+  // }, [tickBuffer, tick])
   
   // SetTickBuffer([...tickBuffer, tick])
-  console.log(tickBuffer.length)
+  // console.log(tickBuffer.length)
   // let klineData = KlineData(props.params)
-  let prices = tickBuffer.length > DATA_LEN ? tickBuffer.slice(Math.max(tickBuffer.length - DATA_LEN, 0)) : tickBuffer
+  // let prices = tickBuffer
   
   // console.log(prices)
-  console.log(tickBuffer)
+  // console.log(tickBuffer)
   const data = {
     labels: [...Array(DATA_LEN).keys()],
     datasets: [
