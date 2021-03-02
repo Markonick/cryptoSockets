@@ -73,10 +73,10 @@ function TickCard(props) {
     
   const tickItems = Object.keys(tick).map((key) => <p style={{color: color}} className={classes.title}> {tick[key]} </p>)
       
-  const upDown = change >= 0 ? change == 0 ? <StopIcon style={{ fill: 'yellow',}} fontSize='medium'/> :
-    <ArrowDropUpIcon style={{ fill: 'green', }} fontSize='medium'/> 
+  const upDown = change >= 0 ? change == 0 ? <StopIcon style={{ fill: 'white',}} fontSize='small'/> :
+    <ArrowDropUpIcon style={{ fill: 'green', }} fontSize='small'/> 
     : 
-    <ArrowDropDownIcon style={{fill: 'red'}} fontSize='medium'/>
+    <ArrowDropDownIcon style={{fill: 'red'}} fontSize='small'/>
   
   const logoAndSymbol = <div style={{ 
     display: 'flex', 
