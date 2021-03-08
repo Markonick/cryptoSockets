@@ -7,7 +7,6 @@ import Link from "@material-ui/core/Link";
 import CardContent from "@material-ui/core/CardContent";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-// import RemoveIcon from '@material-ui/icons/Remove';
 import StopIcon from '@material-ui/icons/Stop';
 import Tick from "./Tick";
 import SymbolLogo from './SymbolLogo'
@@ -54,17 +53,17 @@ function TickCard(props) {
   const classes = useStyles();
   // const history = useHistory();
   let tick = Tick(props.symbol, props.currency)
-  
+
   function handleTickClick(e) {
     e.preventDefault();
      console.log("TICK CARD CLICKED!")
     // history.push(`/`});
   }
 
-  const price = tick.price
+  const price = tick.c
   const change = tick.change
   const color = change >= 0 ? change == 0 ? "white" : "green" : "red"
-  const logo = <SymbolLogo id = {props.id}/>
+  const logo = <SymbolLogo symbol={props.symbol}/>
   
   const symbolCurrency = (
     <p style={{marginLeft: 10, position: "relative", top: "50%", transform: "translateY(-50%)"}}>

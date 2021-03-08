@@ -7,10 +7,9 @@ import Tick from "./Tick";
 const DATA_LEN = 100-1
 
 export default function TimeSeries(props) {
-  const [tickBuffer, SetTickBuffer] = useState([])
-  // const tick = Tick(props.symbol, props.currency)
   const klineData = KlineData(props.params)
   let prices = klineData !== undefined ? klineData.map((item)=> item[1]) : ""
+  
   const fifo = (buffer, size, incomingTick) => {
     buffer.push(incomingTick.price)
    
@@ -20,24 +19,7 @@ export default function TimeSeries(props) {
 
     return buffer
   }
-  
-  // useEffect(() => {
-  //   console.log(tickBuffer)
-  //   setInterval( () => { 
-  //     let buffer = fifo(tickBuffer, 100, tick)
 
-  //     SetTickBuffer(buffer)
-  //   }, 1000);
-    
-  // }, [tickBuffer, tick])
-  
-  // SetTickBuffer([...tickBuffer, tick])
-  // console.log(tickBuffer.length)
-  // let klineData = KlineData(props.params)
-  // let prices = tickBuffer
-  
-  // console.log(prices)
-  // console.log(tickBuffer)
   const data = {
     labels: [...Array(DATA_LEN).keys()],
     datasets: [

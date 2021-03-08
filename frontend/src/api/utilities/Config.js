@@ -20,7 +20,6 @@ const generateErrorDetails = (traceId) => {
 }
 
 const custom5xxPopup = (traceId, httpErrorStatus) => {
-  {
     Swal.fire({
       background: 'rgb(15,15,15)',
       icon: 'error',
@@ -28,13 +27,19 @@ const custom5xxPopup = (traceId, httpErrorStatus) => {
       html: generateErrorDetails(traceId),
       // footer: `<a>trace id: ${traceId}</a>`
     })
-  }
 }
 
 apiClient.interceptors.response.use(
-  response => response,
+  response => {
+    console.log(response)
+    return response
+  },
   error => {
     console.log(error)
+    // if(error['response'] == undefined) {
+    //   console.log('ERROR RESPONSE UNDEFINED')
+    //   return []
+    // }
     if (error.response.status >= 500 && error.response.status < 600) {
       console.log("ERROR RESPONSE in 500s is: ", error.response.status)
       custom5xxPopup("TraceId", error.response.status)

@@ -1,7 +1,8 @@
-
+import GetSymbolId from './GetSymbolId'
 
 function Logo(props) {
-  const url = `https://s2.coinmarketcap.com/static/img/coins/32x32/${props.id}.png`;
+  const id = GetSymbolId(props.symbol);
+  const url = `https://s2.coinmarketcap.com/static/img/coins/32x32/${id}.png`;
   
   return (
     <div>  
