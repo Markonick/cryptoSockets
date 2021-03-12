@@ -1,11 +1,8 @@
 import typing
 from typing import Optional
-import json
 from fastapi import FastAPI, WebSocket, Query, status
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import websockets
-import asyncio
 import json
 
 class Item(BaseModel):
@@ -27,6 +24,7 @@ async def get_binance_ticker_async(symbol: str) -> None:
             data = json.loads(data)
             print('\n', data)
             
+            yield data
 # @app.get("/")
 # async def get():
 #     Websocket_client()

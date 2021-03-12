@@ -1,4 +1,6 @@
 fastapi
-uvicorn[standard]
+uvicorn
+starlette
+aiokafka
+asyncpg
 asyncio
-websockets

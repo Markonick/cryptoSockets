@@ -13,14 +13,14 @@ services:
       SQLALCHEMY_DATABASE_URL: "postgres://postgres:test@db/postgres"
     networks:
       - proxynet
-  # db:
-  #   image: postgres:13
-  #   ports:
-  #     - "5432:5432"
-  #   environment:
-  #     POSTGRES_PASSWORD: 
-  #   networks:
-  #     - proxynet
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 
+    networks:
+      - proxynet
   # frontend:
   #   container_name: frontend
   #   build:
