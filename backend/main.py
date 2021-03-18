@@ -64,10 +64,12 @@ app = FastAPI()
 SCHEMA = "cryptos"
 
 def get_insert_to_tick_query(data):
+    symbol = f'{(data["s"])}'
+    print('SYMBOL: ', symbol)
     return f"""
-        INSERT INTO tick (
-            event_time,
+        INSERT INTO {SCHEMA}.tick (
             symbol,
+            event_time,
             price_change,
             price_change_percent,
             last_price,
@@ -76,8 +78,8 @@ def get_insert_to_tick_query(data):
             low_price
         ) 
         VALUES (
+            {symbol},
             {data["E"]},
-            {data["s"]},
             {data["p"]},
             {data["P"]},
             {data["c"]},
@@ -104,8 +106,8 @@ async def setup_database():
     await conn.execute(f"""
         CREATE TABLE IF NOT EXISTS {SCHEMA}.tick(
             id serial PRIMARY KEY,
-            event_time INTEGER,
             symbol TEXT,
+            event_time BIGINT,
             price_change FLOAT,
             price_change_percent FLOAT,
             last_price FLOAT,
@@ -128,6 +130,7 @@ async def get_binance_ticker_async(symbol: str) -> None:
     
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')
     subscribe = json.dumps({"method": "SUBSCRIBE", "params": [f"{symbol}@ticker"], "id": 1})
+    print(subscribe)
     binance_address = "wss://stream.binance.com:9443/ws"
     async with websockets.connect(binance_address) as websocket:
         await websocket.send(subscribe)    
@@ -135,20 +138,14 @@ async def get_binance_ticker_async(symbol: str) -> None:
             data = await websocket.recv()
             data = json.loads(data)
             print('\n', data)
-            time.sleep(10)
-            await conn.fetch(get_insert_to_tick_query(data))
+            if 'result' not in data:
+                await conn.fetch(get_insert_to_tick_query(data))
             # await cryptodb_insert(data)
             # result = await cryptodb_inserts(data)
             # print('\n', result)
     await conn.close()
-async def multiple_tasks():
-#   input_coroutines = [ setup_database()]
-  input_coroutines = [ create_pool()(), get_binance_ticker_async('btcusdt')]
-  res = await asyncio.gather(*input_coroutines, return_exceptions=True)
-  return res
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    # loop.run_until_complete(create_pool())
-    # loop.run_until_complete(setup_database())
+    loop.run_until_complete(setup_database())
     loop.run_until_complete(get_binance_ticker_async('btcusdt'))
