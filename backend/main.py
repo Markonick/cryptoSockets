@@ -63,10 +63,10 @@ import asyncpg
 app = FastAPI()
 SCHEMA = "cryptos"
 
-def get_insert_to_tick_query(data):
-    symbol = f'{(data["s"])}'
-    print('SYMBOL: ', symbol)
-    return f"""
+def get_insert_to_tick_query(symbol, data):
+    tick_symbol = f'{data["s"]}'
+    print('SYMBOL: ', tick_symbol)
+    query = f"""
         INSERT INTO {SCHEMA}.tick (
             symbol,
             event_time,
@@ -78,7 +78,7 @@ def get_insert_to_tick_query(data):
             low_price
         ) 
         VALUES (
-            {symbol},
+            {tick_symbol},
             {data["E"]},
             {data["p"]},
             {data["P"]},
@@ -88,6 +88,9 @@ def get_insert_to_tick_query(data):
             {data["l"]}
         )
     """
+    print(query)
+    return query
+
 async def create_pool():
     global pool
 
@@ -139,10 +142,8 @@ async def get_binance_ticker_async(symbol: str) -> None:
             data = json.loads(data)
             print('\n', data)
             if 'result' not in data:
-                await conn.fetch(get_insert_to_tick_query(data))
-            # await cryptodb_insert(data)
-            # result = await cryptodb_inserts(data)
-            # print('\n', result)
+                await conn.fetch(get_insert_to_tick_query(symbol, data))
+                
     await conn.close()
 
 if __name__ == '__main__':
