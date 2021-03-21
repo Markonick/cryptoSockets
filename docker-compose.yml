@@ -2,7 +2,7 @@ version: '3.7'
 services:
   producer:
     build:
-      context: ./backend
+      context: ./backend/producer
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
@@ -22,8 +22,35 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
       KAFKA_CREATE_TOPICS: ${KAFKA_CREATE_TOPICS}
       KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
-      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: ${KAFKA_DEFAULT_REPLICATION_FACTOR}
+      # KAFKA_ADVERTISED_LISTENERS: ${KAFKA_ADVERTISED_LISTENERS}
       # SQLALCHEMY_DATABASE_URL: "postgres://postgres:test@db/postgres"
+    networks:
+      - proxynet
+  # consumer:
+  #   build:
+  #     context: ./backend/consumer
+  #     dockerfile: Dockerfile
+  #   restart: unless-stopped
+  #   volumes:
+  #       - ./backend/consumer/:/usr/src/app
+  #   ports:
+  #       - 8003:8000
+  #   depends_on:
+  #     - cryptodb
+  #     - kafka
+  #     - zookeeper
+  #   environment:
+  #     PYTHONUNBUFFERED: 1
+  #     POSTGRES_USER: devUser
+  #     POSTGRES_PASSWORD: devUser1
+  #     POSTGRES_DB: cryptos 
+  #     SCHEMA: ${SCHEMA}
+  #     KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
+  #     KAFKA_CREATE_TOPICS: ${KAFKA_CREATE_TOPICS}
+  #     KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
+  #     KAFKA_DEFAULT_REPLICATION_FACTOR: ${KAFKA_DEFAULT_REPLICATION_FACTOR}
+  #     # SQLALCHEMY_DATABASE_URL: "postgres://postgres:test@db/postgres"
     networks:
       - proxynet
   cryptodb:
@@ -50,7 +77,9 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
       KAFKA_CREATE_TOPICS: ${KAFKA_CREATE_TOPICS}
       KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
-      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: ${KAFKA_DEFAULT_REPLICATION_FACTOR}
+      KAFKA_LOG4J_ROOT_LOGLEVEL: ERROR
+      # KAFKA_TOOLS_LOG4J_LOGLEVEL: ERROR
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
@@ -58,7 +87,7 @@ services:
     networks:
       - proxynet  
   kafdrop:
-    image: obsidiandynamics/kafdrop
+    image: obsidiandynamics/kafdrop:3.23.0
     ports:
       - 9100:9000
     environment:
