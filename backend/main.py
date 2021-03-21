@@ -6,33 +6,7 @@ from pydantic import BaseModel
 import json, os, asyncio, websockets
 from starlette.responses import HTMLResponse, UJSONResponse, PlainTextResponse
 import asyncpg
-
-# Example model:
-# {
-#   "e": "24hrTicker",  // Event type
-#   "E": 123456789,     // Event time
-#   "s": "BNBBTC",      // Symbol
-#   "p": "0.0015",      // Price change
-#   "P": "250.00",      // Price change percent
-#   "w": "0.0018",      // Weighted average price
-#   "x": "0.0009",      // First trade(F)-1 price (first trade before the 24hr rolling window)
-#   "c": "0.0025",      // Last price
-#   "Q": "10",          // Last quantity
-#   "b": "0.0024",      // Best bid price
-#   "B": "10",          // Best bid quantity
-#   "a": "0.0026",      // Best ask price
-#   "A": "100",         // Best ask quantity
-#   "o": "0.0010",      // Open price
-#   "h": "0.0025",      // High price
-#   "l": "0.0010",      // Low price
-#   "v": "10000",       // Total traded base asset volume
-#   "q": "18",          // Total traded quote asset volume
-#   "O": 0,             // Statistics open time
-#   "C": 86400000,      // Statistics close time
-#   "F": 0,             // First trade ID
-#   "L": 18150,         // Last trade Id
-#   "n": 18151          // Total number of trades
-# }
+from aiokafka import AIOKafkaProducer
 
 # class SymbolTicker(BaseModel):
 #     event_type: str
@@ -61,12 +35,15 @@ import asyncpg
 
 
 app = FastAPI()
-SCHEMA = "cryptos"
+SCHEMA = os.environ.get("SCHEMA")
+KAFKA_HOST = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
+KAFKA_CREATE_TOPICS = os.environ.get("KAFKA_CREATE_TOPICS")
+print(SCHEMA)
+print(KAFKA_HOST)
+print(KAFKA_CREATE_TOPICS)
 
-def get_insert_to_tick_query(symbol, data):
-    tick_symbol = f'{data["s"]}'
-    print('SYMBOL: ', tick_symbol)
-    query = f"""
+def get_insert_to_tick_query(data):
+    return f"""
         INSERT INTO {SCHEMA}.tick (
             symbol,
             event_time,
@@ -78,7 +55,7 @@ def get_insert_to_tick_query(symbol, data):
             low_price
         ) 
         VALUES (
-            {tick_symbol},
+            '{data["s"]}',
             {data["E"]},
             {data["p"]},
             {data["P"]},
@@ -88,8 +65,6 @@ def get_insert_to_tick_query(symbol, data):
             {data["l"]}
         )
     """
-    print(query)
-    return query
 
 async def create_pool():
     global pool
@@ -120,17 +95,7 @@ async def setup_database():
         )
     """)
 
-async def cryptodb_insert(data):
-    async with await pool.acquire() as conn:
-        # Open a transaction.
-        async with conn.transaction():
-            result = await conn.fetch(get_insert_to_tick_query(data))
-            print(f"cryptodb_insert result: {result}")
-
-        # return result
-
 async def get_binance_ticker_async(symbol: str) -> None:
-    
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')
     subscribe = json.dumps({"method": "SUBSCRIBE", "params": [f"{symbol}@ticker"], "id": 1})
     print(subscribe)
@@ -142,11 +107,29 @@ async def get_binance_ticker_async(symbol: str) -> None:
             data = json.loads(data)
             print('\n', data)
             if 'result' not in data:
-                await conn.fetch(get_insert_to_tick_query(symbol, data))
+                print(data)
+                # await cryptodb_insert(data)
+                await send_one(data)
+                # await conn.fetch(get_insert_to_tick_query(data))
                 
     await conn.close()
 
+
+async def send_one(data):
+    loop = asyncio.get_event_loop()
+    producer = AIOKafkaProducer(loop=loop, bootstrap_servers='kafka')
+    # get cluster layout and initial topic/partition leadership information
+    await producer.start()
+    try:
+        # produce message
+        value_json = json.dumps(data).encode('utf-8')
+        await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
+    finally:
+        # wait for all pending messages to be delivered or expire.
+        await producer.stop()
+
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
+    # loop.run_until_complete(create_pool())
     loop.run_until_complete(setup_database())
     loop.run_until_complete(get_binance_ticker_async('btcusdt'))
