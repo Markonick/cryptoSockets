@@ -101,12 +101,12 @@ async def consume() -> None:
         # Consume messages
         async for msg in consumer:
             print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
-            await write_binance_ticker_to_db_async(msg)
-    # except LeaderNotAvailableError:
-    #     time.sleep(1)
-    #     async for msg in consumer:
-    #         print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
-    #         await write_binance_ticker_to_db_async(msg)
+            await write_binance_ticker_to_db_async(json.loads(msg.value))
+    except LeaderNotAvailableError:
+        time.sleep(1)
+        async for msg in consumer:
+            print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
+            await write_binance_ticker_to_db_async(json.loads(msg.value))
     finally:
         # Will leave consumer group; perform autocommit if enabled.
         await consumer.stop()

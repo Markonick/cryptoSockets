@@ -11,12 +11,11 @@ from aiokafka.errors import LeaderNotAvailableError
 
 app = FastAPI()
 SCHEMA = os.environ.get("SCHEMA")
-KAFKA_HOST = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
+KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
 KAFKA_CREATE_TOPICS = os.environ.get("KAFKA_CREATE_TOPICS")
 print(SCHEMA)
-print(KAFKA_HOST)
+print(KAFKA_ADVERTISED_HOST_NAME)
 print(KAFKA_CREATE_TOPICS)
-
 
 async def get_binance_ticker_async(symbol: str) -> None:
     subscribe = json.dumps({"method": "SUBSCRIBE", "params": [f"{symbol}@ticker"], "id": 1})
@@ -34,8 +33,9 @@ async def get_binance_ticker_async(symbol: str) -> None:
                 # await conn.fetch(get_insert_to_tick_query(data))
                 
 async def produce(data):
-    producer = AIOKafkaProducer(
-        bootstrap_servers='kafka')
+
+    producer = AIOKafkaProducer(bootstrap_servers=KAFKA_ADVERTISED_HOST_NAME)
+
     # get cluster layout and initial topic/partition leadership information
     await producer.start()
     try:
