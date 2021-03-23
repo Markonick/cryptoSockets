@@ -15,12 +15,13 @@ const Tick = (symbol, currency) => {
         }
 
         const ws = new WebSocket('wss://stream.binance.com:9443/ws');
+        // const ws = new WebSocket('wss://localhost:8000/ws');
         ws.onopen = () => {
             ws.send(JSON.stringify(subscribe));
         };
         ws.onmessage = (event) => {
             let incomingTick = JSON.parse(event.data);
-
+            console.log(incomingTick)
             setTick(incomingTick)
         };
         ws.onclose = () => {

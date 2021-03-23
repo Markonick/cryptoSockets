@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+starlette
+aiokafka
+asyncpg
+asyncio
+loguru
