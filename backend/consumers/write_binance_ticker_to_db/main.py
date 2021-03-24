@@ -57,7 +57,7 @@ async def create_pool():
 
 async def setup_database():
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')
-    print("SCHEMA: ", SCHEMA)
+    # print("SCHEMA: ", SCHEMA)
     # Execute a statement to create a new table.
     await conn.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
     await conn.execute(f"""
@@ -76,13 +76,7 @@ async def setup_database():
                 
 
 async def write_binance_ticker_to_db_async(data) -> None:
-    conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')
-            
-    print('***************CONSUMING***************')
-    print('***************CONSUMING***************')
-    print('***************CONSUMING***************')
-    print('***************CONSUMING***************')
-    print('***************CONSUMING***************')
+    conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
     print('***************CONSUMING***************')
 
     await conn.fetch(get_insert_to_tick_query(data))
@@ -100,7 +94,7 @@ async def consume() -> None:
     try:
         # Consume messages
         async for msg in consumer:
-            print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
+            # print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
             await write_binance_ticker_to_db_async(json.loads(msg.value))
     except LeaderNotAvailableError:
         time.sleep(1)

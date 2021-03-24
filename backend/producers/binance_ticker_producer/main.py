@@ -41,7 +41,7 @@ async def produce(data):
     try:
         # produce message
         value_json = json.dumps(data).encode('utf-8')
-        print(KAFKA_CREATE_TOPICS)
+        # print(KAFKA_CREATE_TOPICS)
         await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
     except LeaderNotAvailableError:
         time.sleep(1)

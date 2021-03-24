@@ -14,8 +14,9 @@ const Tick = (symbol, currency) => {
             "id": 1
         }
 
-        const ws = new WebSocket('wss://stream.binance.com:9443/ws');
-        // const ws = new WebSocket('wss://localhost:8000/ws');
+        // const ws = new WebSocket('wss://stream.binance.com:9443/ws');
+        const ws = new WebSocket('ws://127.0.0.1:8000/ws');
+        // const ws = new WebSocket('ws://127.0.0.1:8000/consumer');
         ws.onopen = () => {
             ws.send(JSON.stringify(subscribe));
         };
