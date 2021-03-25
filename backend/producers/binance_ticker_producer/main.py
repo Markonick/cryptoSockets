@@ -9,6 +9,28 @@ import asyncpg
 from aiokafka import AIOKafkaProducer
 from aiokafka.errors import LeaderNotAvailableError
 
+symbols = [
+  "btc"  , 
+  "xrp"  , "doge" , "xlm"  , "trx"  , 
+  "eos"  , "ltc"  , "miota", "xmr"  , "link" , 
+  "etn"  , "rdd"  , "strax", "npxs" , "glm"  ,
+  "aave" , "sol"  , "atom" , "cro"  , "ht"   ,
+  "mkr"  , "snx"  , "algo" , "ksm"  , "comp" ,
+  "vgx"  , "ftm"  , "zec"  , "rune" , "cel"  ,
+  "rev"  , "icx"  , "hbar" , "chsb" , "iost" ,
+  "zks"  , "lrc"  , "omg"  , "pax"  , "husd" ,
+  "vet"  , "sc"   , "btt"  , "dash" , "xtz"  ,
+  "bch"  , "bnb"  , "ada"  , "usdt" , "dcn"  ,
+  "tfuel", "xvg"  , "rvn"  , "bat"  , "dot"  ,
+  "theta", "luna" , "neo"  , "ftt"  , "dai"  ,
+  "egld" , "fil"  , "leo"  , "sushi", "dcr"  ,
+  "ren"  , "nexo" , "zrx"  , "okb"  , "waves",
+  "dgb"  , "ont"  , "bnt"  , "nano" , "matic",
+  "xwc"  , "zen"  , "btmx" , "qtum" , "hnt"  ,
+  "KNDC" , "delta", "pib"  , "opt"  , "acdc", "eth",
+]
+currency = 'usdt'
+
 app = FastAPI()
 SCHEMA = os.environ.get("SCHEMA")
 KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
@@ -18,7 +40,7 @@ print(KAFKA_ADVERTISED_HOST_NAME)
 print(KAFKA_CREATE_TOPICS)
 
 async def get_binance_ticker_async(symbol: str) -> None:
-    subscribe = json.dumps({"method": "SUBSCRIBE", "params": [f"{symbol}@ticker"], "id": 1})
+    subscribe = json.dumps({"method": "SUBSCRIBE", "params": [f"{symbol}{currency}@ticker"], "id": 1})
     binance_address = "wss://stream.binance.com:9443/ws"
     async with websockets.connect(binance_address) as websocket:
         await websocket.send(subscribe)    
