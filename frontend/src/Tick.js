@@ -43,7 +43,6 @@ const Tick = (symbol, currency) => {
         let oldPrice = price;
         let newPrice = Number(tick.c)
         let calculatedChange = calcChange(oldPrice, newPrice)
-
         setChange(calculatedChange.toFixed(7))
         setPrice(newPrice)
     }, [tick])
