@@ -9,9 +9,8 @@ import asyncpg
 from aiokafka import AIOKafkaProducer
 from aiokafka.errors import LeaderNotAvailableError
 
-symbols = [
-  "btc"  , 
-  "xrp"  , "doge" , "xlm"  , "trx"  , 
+SYMBOLS = [
+  "btc"  , "xrp"  , "doge" , "xlm"  , "trx"  , 
   "eos"  , "ltc"  , "miota", "xmr"  , "link" , 
   "etn"  , "rdd"  , "strax", "npxs" , "glm"  ,
   "aave" , "sol"  , "atom" , "cro"  , "ht"   ,
@@ -29,7 +28,7 @@ symbols = [
   "xwc"  , "zen"  , "btmx" , "qtum" , "hnt"  ,
   "KNDC" , "delta", "pib"  , "opt"  , "acdc", "eth",
 ]
-currency = 'usdt'
+CURRENCY = 'usdt'
 
 app = FastAPI()
 SCHEMA = os.environ.get("SCHEMA")
@@ -39,7 +38,14 @@ print(SCHEMA)
 print(KAFKA_ADVERTISED_HOST_NAME)
 print(KAFKA_CREATE_TOPICS)
 
-async def get_binance_ticker_async(symbol: str) -> None:
+async def coro(symbol, currency):
+    await get_binance_ticker_async(symbol, currency)
+
+async def get_tickers():
+    coros = [coro(symbol, CURRENCY) for symbol in SYMBOLS]
+    await asyncio.gather(*coros)
+
+async def get_binance_ticker_async(symbol: str, currency: str) -> None:
     subscribe = json.dumps({"method": "SUBSCRIBE", "params": [f"{symbol}{currency}@ticker"], "id": 1})
     binance_address = "wss://stream.binance.com:9443/ws"
     async with websockets.connect(binance_address) as websocket:
@@ -47,15 +53,10 @@ async def get_binance_ticker_async(symbol: str) -> None:
         while True:
             data = await websocket.recv()
             data = json.loads(data)
-            # print('\n', data)
             if 'result' not in data:
-                # print(data)
-                # await cryptodb_insert(data)
                 await produce(data)
-                # await conn.fetch(get_insert_to_tick_query(data))
                 
 async def produce(data):
-
     producer = AIOKafkaProducer(bootstrap_servers=KAFKA_ADVERTISED_HOST_NAME)
 
     # get cluster layout and initial topic/partition leadership information
@@ -63,7 +64,6 @@ async def produce(data):
     try:
         # produce message
         value_json = json.dumps(data).encode('utf-8')
-        # print(KAFKA_CREATE_TOPICS)
         await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
     except LeaderNotAvailableError:
         time.sleep(1)
@@ -75,4 +75,4 @@ async def produce(data):
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(get_binance_ticker_async('btcusdt'))
+    loop.run_until_complete(get_tickers())
