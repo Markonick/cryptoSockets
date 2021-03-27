@@ -11,7 +11,7 @@ from aiokafka.errors import LeaderNotAvailableError
 
 SYMBOLS = [
   "btc"  , "xrp"  , "doge" , "xlm"  , "trx"  , 
-  "eos"  , "ltc"  , "miota", "xmr"  , "link" , 
+  "eos"  , "ltc"  , "iota", "xmr"  , "link" , 
   "etn"  , "rdd"  , "strax", "npxs" , "glm"  ,
   "aave" , "sol"  , "atom" , "cro"  , "ht"   ,
   "mkr"  , "snx"  , "algo" , "ksm"  , "comp" ,

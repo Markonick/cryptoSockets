@@ -6,21 +6,24 @@ const Tick = (symbol, currency) => {
     const [change, setChange] = useState(0);
     
     const symbolTicker = (symbol, currency) => { 
-        const subscribe = {
-            "method": "SUBSCRIBE",
-            "params": [
-                `${symbol.toLowerCase()}${currency}@ticker`,
-            ],
-            "id": 1
-        }
+        // const subscribe = {
+        //     "method": "SUBSCRIBE",
+        //     "params": [
+        //         `${symbol.toLowerCase()}${currency}@ticker`,
+        //     ],
+        //     "id": 1
+        // }
 
+        const symbolCurrency = `${symbol.toLowerCase()}${currency}`;
         // const ws = new WebSocket('wss://stream.binance.com:9443/ws');
-        const ws = new WebSocket('ws://127.0.0.1:8000/ws');
+        const ws = new WebSocket(`ws://127.0.0.1:8000/ws/tickers/${symbolCurrency}`);
         // const ws = new WebSocket('ws://127.0.0.1:8000/consumer');
         ws.onopen = () => {
-            ws.send(JSON.stringify(subscribe));
+            // ws.send(JSON.stringify(subscribe));
+            ws.send(symbolCurrency);
         };
         ws.onmessage = (event) => {
+            console.log(event)
             let incomingTick = JSON.parse(event.data);
             console.log(incomingTick)
             setTick(incomingTick)
