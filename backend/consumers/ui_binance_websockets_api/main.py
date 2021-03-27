@@ -30,7 +30,7 @@ async def consume(consumer, topic_name):
 def read_root():
     return {"Hello": "World"}
 
-@app.websocket("/ws")
+@app.websocket("/tickers/{symbol}")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     msg = {"Message: ": "connected"}
