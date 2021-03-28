@@ -8,7 +8,7 @@ const DATA_LEN = 100-1
 
 export default function TimeSeries(props) {
   console.log(KlineData(props.params))
-  const klineData = [1.2,3] //KlineData(props.params)
+  const klineData = KlineData(props.params)
   let prices = klineData !== undefined ? klineData.map((item)=> item[1]) : ""
   
   const fifo = (buffer, size, incomingTick) => {
