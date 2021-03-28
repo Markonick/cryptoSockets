@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const Tick = (symbol, currency) => {
+const Kline = (symbol, currency) => {
     const [tick, setTick] = useState({});
     const [price, setPrice] = useState(0);
     const [change, setChange] = useState(0);
     
-    const symbolTicker = (symbol, currency) => { 
+    const symbolKline = (symbol, currency) => { 
         const symbolCurrency = `${symbol.toLowerCase()}${currency}`;
-        const ws = new WebSocket(`ws://127.0.0.1:8000/ws/tickers/${symbolCurrency}`);
+        const ws = new WebSocket(`ws://127.0.0.1:8000/ws/klines/${symbolCurrency}`);
         ws.onopen = () => {
             ws.send(symbolCurrency);
         };
@@ -28,7 +28,7 @@ const Tick = (symbol, currency) => {
     
     // Effect to initialise ticker on render (eg first render or refresh)
     useEffect(() => {
-        symbolTicker(symbol, currency)
+        symbolKline(symbol, currency)
     }, [])
     
     useEffect(() => {   
@@ -48,4 +48,4 @@ const Tick = (symbol, currency) => {
     return { price: price, change: change,  }
 };
 
-export default Tick;
+export default Kline;

@@ -20,10 +20,10 @@ print(KAFKA_CREATE_TOPICS)
 
 loop = asyncio.get_event_loop()
 
-def get_insert_to_tick_query(data):
+def insert_to_tick_query(data):
     return f"""
         INSERT INTO {SCHEMA}.tick (
-            symbol,
+            symbol_id,
             event_time,
             price_change,
             price_change_percent,
@@ -44,6 +44,34 @@ def get_insert_to_tick_query(data):
         )
     """
 
+def insert_to_kline_query(data):
+    return f"""
+        INSERT INTO {SCHEMA}.kline (
+            symbol_id,
+            event_time,
+            open_price,
+            close_price,
+            high_price,
+            low_price,
+            interval,
+            start_time,
+            close_time,
+            number_of_trades
+        ) 
+        VALUES (
+            '{data["s"]}',
+            {data["E"]},
+            {data["o"]},
+            {data["c"]},
+            {data["h"]},
+            {data["l"]},
+            {data["i"]},
+            {data["t"]},
+            {data["T"]},
+            {data["n"]}
+        )
+    """
+
 async def create_pool():
     global pool
 
@@ -55,31 +83,18 @@ async def create_pool():
         port=5432
     )
 
-async def setup_database():
-    conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')
-    # print("SCHEMA: ", SCHEMA)
-    # Execute a statement to create a new table.
-    await conn.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
-    await conn.execute(f"""
-        CREATE TABLE IF NOT EXISTS {SCHEMA}.tick(
-            id serial PRIMARY KEY,
-            symbol TEXT,
-            event_time BIGINT,
-            price_change FLOAT,
-            price_change_percent FLOAT,
-            last_price FLOAT,
-            open_price FLOAT,
-            high_price FLOAT,
-            low_price FLOAT
-        )
-    """)
-                
+async def write_binance_ticker_to_db_async(data) -> None:
+    conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
+    print('***************CONSUMING***************')
+
+    await conn.fetch(insert_to_tick_query(data))
+    await conn.close()
 
 async def write_binance_ticker_to_db_async(data) -> None:
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
     print('***************CONSUMING***************')
 
-    await conn.fetch(get_insert_to_tick_query(data))
+    await conn.fetch(insert_to_tick_query(data))
     await conn.close()
 
 async def consume() -> None:
@@ -108,6 +123,5 @@ async def consume() -> None:
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    # loop.run_until_complete(create_pool())
-    loop.run_until_complete(setup_database())   
+    # loop.run_until_complete(create_pool()) 
     loop.run_until_complete(consume())   

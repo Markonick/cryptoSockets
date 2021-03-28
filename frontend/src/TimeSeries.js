@@ -3,11 +3,14 @@ import klines from './mockKlines'
 import { Line } from 'react-chartjs-2'
 import KlineData from './api/KlineData'
 import Tick from "./Tick";
+import Kline from "./Kline";
 
 const DATA_LEN = 100-1
 
 export default function TimeSeries(props) {
-  const klineData = KlineData(props.params)
+  // const klineData = KlineData(props.params)
+  
+  let klineData = Kline(props.symbol, props.currency)
   console.log(klineData)
   let prices = klineData !== undefined ? klineData.map((item)=> item[1]) : ""
   
