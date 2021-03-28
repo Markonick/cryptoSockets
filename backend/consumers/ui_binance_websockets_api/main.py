@@ -30,6 +30,43 @@ async def consume(consumer, topic_name):
 def read_root():
     return {"Hello": "World"}
 
+@app.websocket("/ws/klines/{symbol}")
+async def websocket_endpoint(websocket: WebSocket, symbol: str):
+    await websocket.accept()
+    msg = {"Message: ": "connected"}
+    await websocket.send_json(msg)
+    
+    loop = asyncio.get_event_loop()
+    consumer = AIOKafkaConsumer(
+        'klines',
+        loop=loop,
+        bootstrap_servers='kafka',
+        enable_auto_commit=False,
+    )
+
+    await consumer.start()
+    counter = 0
+    print('Kafka Consumer started .............')
+    try:
+        # Consume messages
+        async for msg in consumer:
+            decoded_msg = json.loads(msg.value.decode("utf-8"))
+            print(decoded_msg["s"])
+            print(symbol.lower())
+            if decoded_msg["s"].lower() == symbol.lower():
+                await websocket.send_text(msg.value.decode("utf-8"))
+                print("websocket.send_text(msg.value): ","SENT!!!!!")
+    except LeaderNotAvailableError:
+        time.sleep(1)
+        async for msg in consumer:
+            decoded_msg = msg.value.decode("utf-8")
+            if decoded_msg["s"].lower() == symbol.lower():
+                await websocket.send_text(decoded_msg)
+                print("websocket.send_text(msg.value): ","SENT!!!!!")
+    finally:
+        # Will leave consumer group; perform autocommit if enabled.
+        await consumer.stop()
+ 
 @app.websocket("/ws/tickers/{symbol}")
 async def websocket_endpoint(websocket: WebSocket, symbol: str):
     await websocket.accept()

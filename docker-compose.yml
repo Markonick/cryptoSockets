@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  producer:
+  ticker_producer:
     build:
       context: ./backend/producers/binance_ticker_producer
       dockerfile: Dockerfile
@@ -9,6 +9,30 @@ services:
         - ./backend/producers/:/usr/src/app
     ports:
         - 8002:8000
+    depends_on:
+      - cryptodb
+      - kafka
+      - zookeeper
+    environment:
+      PYTHONUNBUFFERED: 1
+      POSTGRES_USER: devUser
+      POSTGRES_PASSWORD: devUser1
+      POSTGRES_DB: cryptos 
+      SCHEMA: ${SCHEMA}
+      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
+      KAFKA_CREATE_TOPICS: ${KAFKA_CREATE_TOPICS}
+      KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
+    networks:
+      - proxynet
+  kline_producer:
+    build:
+      context: ./backend/producers/binance_kline_producer
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+        - ./backend/producers/:/usr/src/app
+    ports:
+        - 8004:8000
     depends_on:
       - cryptodb
       - kafka
