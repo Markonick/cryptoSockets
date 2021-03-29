@@ -65,11 +65,11 @@ async def produce(data):
         # produce message
         value_json = json.dumps(data).encode('utf-8')
         print("PRODUCING KLINES !!!!!!!!!!!!!!!!!")
-        await producer.send_and_wait('klines', value_json)
+        await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
     except LeaderNotAvailableError:
         time.sleep(1)
         value_json = json.dumps(data).encode('utf-8')
-        await producer.send_and_wait('klines', value_json)
+        await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
     finally:
         # wait for all pending messages to be delivered or expire.
         await producer.stop()
