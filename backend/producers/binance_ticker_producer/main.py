@@ -34,9 +34,6 @@ app = FastAPI()
 SCHEMA = os.environ.get("SCHEMA")
 KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
 KAFKA_CREATE_TOPICS = os.environ.get("KAFKA_CREATE_TOPICS")
-print(SCHEMA)
-print(KAFKA_ADVERTISED_HOST_NAME)
-print(KAFKA_CREATE_TOPICS)
 
 
 class ICryptoInstrument(abc.ABC):
