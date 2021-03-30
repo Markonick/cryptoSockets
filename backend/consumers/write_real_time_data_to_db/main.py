@@ -20,10 +20,11 @@ print(KAFKA_CREATE_TOPICS)
 
 loop = asyncio.get_event_loop()
 
-def insert_to_tick_query(data):
+def insert_tick_query(data, exchange):
     return f"""
         INSERT INTO {SCHEMA}.tick (
             symbol_id,
+            exchange,
             event_time,
             price_change,
             price_change_percent,
@@ -34,6 +35,7 @@ def insert_to_tick_query(data):
         ) 
         VALUES (
             '{data["s"]}',
+            {exchange},
             {data["E"]},
             {data["p"]},
             {data["P"]},
@@ -44,10 +46,11 @@ def insert_to_tick_query(data):
         )
     """
 
-def insert_to_kline_query(data):
+def insert_kline_query(data, exchange):
     return f"""
         INSERT INTO {SCHEMA}.kline (
             symbol_id,
+            exchange,
             event_time,
             open_price,
             close_price,
@@ -60,6 +63,7 @@ def insert_to_kline_query(data):
         ) 
         VALUES (
             '{data["s"]}',
+            {exchange},
             {data["E"]},
             {data["o"]},
             {data["c"]},
@@ -72,18 +76,16 @@ def insert_to_kline_query(data):
         )
     """
 
-async def write_binance_ticker_to_db_async(data) -> None:
+async def write_msg_to_db_async(data, exchange) -> None:
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
     print('***************CONSUMING***************')
 
-    await conn.fetch(insert_to_tick_query(data))
-    await conn.close()
+    if data.event_type == "24hrTicker":
+        await conn.fetch(insert_tick_query(data, exchange))
 
-async def write_binance_ticker_to_db_async(data) -> None:
-    conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
-    print('***************CONSUMING***************')
+    if data.event_type == "kline":
+        await conn.fetch(insert_kline_query(data, exchange))
 
-    await conn.fetch(insert_to_tick_query(data))
     await conn.close()
 
 async def consume() -> None:
@@ -99,12 +101,12 @@ async def consume() -> None:
         # Consume messages
         async for msg in consumer:
             # print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
-            await write_binance_ticker_to_db_async(json.loads(msg.value))
+            await write_msg_to_db_async(json.loads(msg.value))
     except LeaderNotAvailableError:
         time.sleep(1)
         async for msg in consumer:
-            print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
-            await write_binance_ticker_to_db_async(json.loads(msg.value))
+            # print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
+            await write_msg_to_db_async(json.loads(msg.value))
     finally:
         # Will leave consumer group; perform autocommit if enabled.
         await consumer.stop()
