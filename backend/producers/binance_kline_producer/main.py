@@ -41,7 +41,7 @@ print(KAFKA_CREATE_TOPICS)
 async def coro(symbol, currency):
     await get_binance_kline_async(symbol, currency)
 
-async def get_tickers():
+async def get_klines():
     coros = [coro(symbol, CURRENCY) for symbol in SYMBOLS]
     await asyncio.gather(*coros)
 
@@ -63,12 +63,12 @@ async def produce(data):
     await producer.start()
     try:
         # produce message
-        value_json = json.dumps(data).encode('utf-8')
+        value_json = json.dumps({**data, "exchange": "binance"}).encode('utf-8')
         print("PRODUCING KLINES !!!!!!!!!!!!!!!!!")
         await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
     except LeaderNotAvailableError:
         time.sleep(1)
-        value_json = json.dumps(data).encode('utf-8')
+        value_json = json.dumps({**data, "exchange": "binance"}).encode('utf-8')
         await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
     finally:
         # wait for all pending messages to be delivered or expire.
@@ -76,4 +76,4 @@ async def produce(data):
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(get_tickers())
+    loop.run_until_complete(get_klines())

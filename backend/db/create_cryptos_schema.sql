@@ -19,6 +19,7 @@ CREATE TABLE cryptos.exchange_symbol (
 
 CREATE TABLE IF NOT EXISTS cryptos.tick(
     id SERIAL PRIMARY KEY,
+    exhange TEXT,
     event_time BIGINT,
     price_change FLOAT,
     price_change_percent FLOAT,
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS cryptos.tick(
 
 CREATE TABLE IF NOT EXISTS cryptos.kline(
     id SERIAL PRIMARY KEY,
+    exhange TEXT,
     event_time BIGINT,
     open_price FLOAT,
     close_price FLOAT,
