@@ -72,17 +72,6 @@ def insert_to_kline_query(data):
         )
     """
 
-async def create_pool():
-    global pool
-
-    pool = await asyncpg.create_pool(
-        user=os.getenv('POSTGRES_USER', 'devUser'),
-        password=os.getenv('POSTGRES_PASSWORD', 'devUser1'),
-        database=os.getenv('POSTGRES_DB', 'cryptos'),
-        host='cryptodb',
-        port=5432
-    )
-
 async def write_binance_ticker_to_db_async(data) -> None:
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
     print('***************CONSUMING***************')

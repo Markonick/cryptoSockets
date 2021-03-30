@@ -50,11 +50,11 @@ services:
       - proxynet
   write_real_time_data_to_db:
     build:
-      context: ./backend/consumers/write_binance_ticker_to_db
+      context: ./backend/consumers/write_real_time_data_to_db
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-        - ./backend/consumers/write_binance_ticker_to_db/:/usr/src/app
+        - ./backend/consumers/write_real_time_data_to_db/:/usr/src/app
     ports:
         - 8003:8000
     depends_on:
