@@ -1,29 +1,21 @@
 import typing, time
 from typing import Optional
-from fastapi import FastAPI, WebSocket, Query, status
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
-import json, os, asyncio, websockets
-from starlette.responses import HTMLResponse, UJSONResponse, PlainTextResponse
+import json, os, asyncio
 import asyncpg
 from aiokafka import AIOKafkaConsumer
 from aiokafka.errors import LeaderNotAvailableError
 
-app = FastAPI()
 SCHEMA = os.environ.get("SCHEMA")
-KAFKA_HOST = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
+KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
 KAFKA_CREATE_TOPICS = os.environ.get("KAFKA_CREATE_TOPICS")
-print(SCHEMA)
-print(KAFKA_HOST)
-print(KAFKA_CREATE_TOPICS)
 
 
 loop = asyncio.get_event_loop()
 
-def insert_tick_query(data, exchange):
+def insert_tick_query(data):
     return f"""
         INSERT INTO {SCHEMA}.tick (
-            symbol_id,
+            symbol,
             exchange,
             event_time,
             price_change,
@@ -35,7 +27,7 @@ def insert_tick_query(data, exchange):
         ) 
         VALUES (
             '{data["s"]}',
-            {exchange},
+            '{data["exchange"]}',
             {data["E"]},
             {data["p"]},
             {data["P"]},
@@ -46,10 +38,10 @@ def insert_tick_query(data, exchange):
         )
     """
 
-def insert_kline_query(data, exchange):
+def insert_kline_query(data):
     return f"""
         INSERT INTO {SCHEMA}.kline (
-            symbol_id,
+            symbol,
             exchange,
             event_time,
             open_price,
@@ -63,7 +55,7 @@ def insert_kline_query(data, exchange):
         ) 
         VALUES (
             '{data["s"]}',
-            {exchange},
+            '{data["exchange"]}',
             {data["E"]},
             {data["o"]},
             {data["c"]},
@@ -76,15 +68,13 @@ def insert_kline_query(data, exchange):
         )
     """
 
-async def write_msg_to_db_async(data, exchange) -> None:
+async def write_msg_to_db_async(data) -> None:
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
-    print('***************CONSUMING***************')
+    if data["e"] == "24hrTicker":
+        await conn.fetch(insert_tick_query(data))
 
-    if data.event_type == "24hrTicker":
-        await conn.fetch(insert_tick_query(data, exchange))
-
-    if data.event_type == "kline":
-        await conn.fetch(insert_kline_query(data, exchange))
+    if data["e"] == "kline":
+        await conn.fetch(insert_kline_query(data))
 
     await conn.close()
 
@@ -92,7 +82,7 @@ async def consume() -> None:
     consumer = AIOKafkaConsumer(
         KAFKA_CREATE_TOPICS,
         loop=loop,
-        bootstrap_servers='kafka',
+        bootstrap_servers=KAFKA_ADVERTISED_HOST_NAME,
         enable_auto_commit=False,
     )
 

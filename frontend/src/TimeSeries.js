@@ -8,12 +8,9 @@ import Kline from "./Kline";
 const DATA_LEN = 100-1
 
 export default function TimeSeries(props) {
-  // const klineData = KlineData(props.params)
-  
   let klineData = Kline(props.symbol, props.currency)
   console.log(klineData)
-  let prices = klineData !== undefined ? klineData.map((item)=> item[1]) : ""
-  
+
   const fifo = (buffer, size, incomingTick) => {
     buffer.push(incomingTick.price)
    
@@ -24,6 +21,9 @@ export default function TimeSeries(props) {
     return buffer
   }
 
+  let prices = []
+  prices = fifo(prices, DATA_LEN, klineData)
+  console.log(prices)
   const data = {
     labels: [...Array(DATA_LEN).keys()],
     datasets: [

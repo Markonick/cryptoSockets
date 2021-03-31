@@ -12,9 +12,9 @@ const Tick = (symbol, currency) => {
             ws.send(symbolCurrency);
         };
         ws.onmessage = (event) => {
-            console.log(event)
+            // console.log(event)
             let incomingTick = JSON.parse(event.data);
-            console.log(incomingTick)
+            // console.log(incomingTick)
             setTick(incomingTick)
         };
         ws.onclose = () => {

@@ -1,3 +1,6 @@
 {
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "python.formatting.provider": "black",
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true
 }
