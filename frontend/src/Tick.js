@@ -4,8 +4,10 @@ const Tick = (symbol, currency) => {
     const [tick, setTick] = useState({});
     const [price, setPrice] = useState(0);
     const [change, setChange] = useState(0);
-    
-    const symbolTicker = (symbol, currency) => { 
+    console.log(symbol)
+    const symbolTicker = (symbol, currency) => {
+        console.log("!!!!!!!!!!!!!!!!!!!!  inside symbolticker  !!!!!!!!!!!!!!!!!!")
+        console.log("!!!!!!!!!!!!!!!!!!!!  inside symbolticker  !!!!!!!!!!!!!!!!!!")
         const symbolCurrency = `${symbol.toLowerCase()}${currency}`;
         const ws = new WebSocket(`ws://127.0.0.1:8000/ws/tickers/${symbolCurrency}`);
         ws.onopen = () => {
@@ -28,6 +30,10 @@ const Tick = (symbol, currency) => {
     
     // Effect to initialise ticker on render (eg first render or refresh)
     useEffect(() => {
+        console.log("!!!!!!!!!!!!!!!!!!!!  inside useEFFECT  !!!!!!!!!!!!!!!!!!")
+        console.log("!!!!!!!!!!!!!!!!!!!!  inside useEFFECT  !!!!!!!!!!!!!!!!!!")
+        console.log("!!!!!!!!!!!!!!!!!!!!  inside useEFFECT  !!!!!!!!!!!!!!!!!!")
+        console.log("!!!!!!!!!!!!!!!!!!!!  inside useEFFECT  !!!!!!!!!!!!!!!!!!")
         symbolTicker(symbol, currency)
     }, [])
     

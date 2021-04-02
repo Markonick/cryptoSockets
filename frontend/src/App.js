@@ -49,6 +49,10 @@ function App() {
     setPage(value)
     setStart(start)
     setEnd(end)
+    const pageSymbols = symbols.slice(start, end)
+    console.log(pageSymbols)
+    let cards = CreateTickCards(pageSymbols, "usdt")
+    setCards(cards)
   };
 
   // Effect to initialise cards runs on render (eg first render or refresh)
@@ -60,20 +64,20 @@ function App() {
     setCards(cards)
   },[])
 
-  // Effect to create & set cards stae for current page change -> but not on 1st refresh!
-  useEffect(() => {
-    console.log('3333333333333333333333333')
-    console.log(page)
-    const start = (page - 1) * PAGE_SIZE
-    const end = start + PAGE_SIZE
-    const pageSymbols = symbols.slice(start, end)
-    console.log(pageSymbols)
-    let cards = CreateTickCards(pageSymbols, "usdt")
-    setStart(start)
-    setEnd(end)
-    console.log(cards)
-    setCards(cards)
-  }, [page, start, end])
+  // Effect to create & set cards state for current page change -> but not on 1st refresh!
+  // useEffect(() => {
+  //   console.log('3333333333333333333333333')
+  //   console.log(page)
+  //   // const start = (page - 1) * PAGE_SIZE
+  //   // const end = start + PAGE_SIZE
+  //   const pageSymbols = symbols.slice(start, end)
+  //   console.log(pageSymbols)
+  //   let cards = CreateTickCards(pageSymbols, "usdt")
+  //   // setStart(start)
+  //   // setEnd(end)
+  //   // console.log(cards)
+  //   setCards(cards)
+  // }, [page, start, end])
 
   console.log(searchSymbol)
   // Handle Search Symbol 
@@ -119,10 +123,13 @@ function App() {
 
   return (
     <div className="App" >
-      <header className="App-header" style={{
-      display: 'flex', 
-      flexDirection: "column",
-      justifyContent: 'start', }}>
+      <header
+        className="App-header"
+        style={{
+          display: 'flex', 
+          flexDirection: "column",
+          justifyContent: 'start',
+        }}>
         <SearchCoin func={handleSymbolSearch} />
         <p>
           <CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>

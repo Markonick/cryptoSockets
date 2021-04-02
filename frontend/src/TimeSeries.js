@@ -9,7 +9,7 @@ const DATA_LEN = 100-1
 
 export default function TimeSeries(props) {
   let klineData = Kline(props.symbol, props.currency)
-  console.log(klineData)
+  // console.log(klineData)
 
   const fifo = (buffer, size, incomingTick) => {
     buffer.push(incomingTick.price)
@@ -23,7 +23,7 @@ export default function TimeSeries(props) {
 
   let prices = []
   prices = fifo(prices, DATA_LEN, klineData)
-  console.log(prices)
+  // console.log(prices)
   const data = {
     labels: [...Array(DATA_LEN).keys()],
     datasets: [
