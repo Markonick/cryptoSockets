@@ -4,30 +4,22 @@ import SearchCoin from './SearchCoin'
 import TickTableHead from './TickTableHead'
 import TickCard from './TickCard';
 import TimeSeries from './TimeSeries';
+import CryptosTable from './CryptosTable';
 // import CreateTickCards from './CreateTickCards'
 import './App.css';
 
 const PAGE_SIZE = 10
 const BUFFER_LEN = 5
 const symbols = [
-  "btc"  , 
-  "xrp"  , "doge" , "xlm"  , "trx"  , 
-  "eos"  , "ltc"  , "miota", "xmr"  , "link" , 
-  "etn"  , "rdd"  , "strax", "npxs" , "glm"  ,
-  "aave" , "sol"  , "atom" , "cro"  , "ht"   ,
-  "mkr"  , "snx"  , "algo" , "ksm"  , "comp" ,
-  "vgx"  , "ftm"  , "zec"  , "rune" , "cel"  ,
-  "rev"  , "icx"  , "hbar" , "chsb" , "iost" ,
-  "zks"  , "lrc"  , "omg"  , "pax"  , "husd" ,
-  "vet"  , "sc"   , "btt"  , "dash" , "xtz"  ,
-  "bch"  , "bnb"  , "ada"  , "usdt" , "dcn"  ,
-  "tfuel", "xvg"  , "rvn"  , "bat"  , "dot"  ,
-  "theta", "luna" , "neo"  , "ftt"  , "dai"  ,
-  "egld" , "fil"  , "leo"  , "sushi", "dcr"  ,
-  "ren"  , "nexo" , "zrx"  , "okb"  , "waves",
-  "dgb"  , "ont"  , "bnt"  , "nano" , "matic",
-  "xwc"  , "zen"  , "btmx" , "qtum" , "hnt"  ,
-  "KNDC" , "delta", "pib"  , "opt"  , "acdc", "eth",
+  "btc"  , "xrp"  , "doge" , "xlm"  , "trx"  , "eos"  , "ltc"  , "miota", "xmr"  , "link" , 
+  "etn"  , "rdd"  , "strax", "npxs" , "glm"  , "aave" , "sol"  , "atom" , "cro"  , "ht"   ,
+  "mkr"  , "snx"  , "algo" , "ksm"  , "comp" , "vgx"  , "ftm"  , "zec"  , "rune" , "cel"  ,
+  "rev"  , "icx"  , "hbar" , "chsb" , "iost" , "zks"  , "lrc"  , "omg"  , "pax"  , "husd" ,
+  "vet"  , "sc"   , "btt"  , "dash" , "xtz"  , "bch"  , "bnb"  , "ada"  , "usdt" , "dcn"  ,
+  "tfuel", "xvg"  , "rvn"  , "bat"  , "dot"  , "theta", "luna" , "neo"  , "ftt"  , "dai"  ,
+  "egld" , "fil"  , "leo"  , "sushi", "dcr"  , "ren"  , "nexo" , "zrx"  , "okb"  , "waves",
+  "dgb"  , "ont"  , "bnt"  , "nano" , "matic", "xwc"  , "zen"  , "btmx" , "qtum" , "hnt"  ,
+  "kndc" , "delta", "pib"  , "opt"  , "acdc" , "eth",
 ]
 
 function App() {
@@ -131,10 +123,7 @@ function App() {
           justifyContent: 'start',
         }}>
         <SearchCoin func={handleSymbolSearch} />
-        <p>
-          <CustomPagination count={pageCount} page={page} func={handlePageChange}></CustomPagination>
-        </p>    
-        {[tickTableHead, ...cards]}
+        <CryptosTable/>
       </header>
     </div>
   );
