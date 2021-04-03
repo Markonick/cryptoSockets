@@ -46,6 +46,36 @@ import TableRow from '@material-ui/core/TableRow';
 //     WebkitFontSmoothing: 'antialiased',
 //   }
 // }));
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: "#1c1c1f",
+    color: "white",
+    width: "30%",
+    marginLeft: "40px",
+    borderRadius: "12px",
+    padding: 10,
+  },
+  container: {
+    background: "#1c1c1f",
+    minHeight: 440,
+    maxHeight: 440,
+    color: "white",
+  },
+  row: {
+    color: "white",
+    fontSize: 10,
+    fontStyle: "normal",
+    fontWeight: "100",
+    fontFamily: 'normal 100%/1.5 "Dosis", sans-serif',
+    WebkitFontSmoothing: 'antialiased',
+    "&:hover": {
+        backgroundColor: "aqua",
+        opacity: "0.1",
+    }
+  }
+});
+
 const symbols = [
   "btc"  , "xrp"  , "doge" , "xlm"  , "trx"  , "eos"  , "ltc"  , "miota", "xmr"  , "link" , 
   "etn"  , "rdd"  , "strax", "npxs" , "glm"  , "aave" , "sol"  , "atom" , "cro"  , "ht"   ,
@@ -57,81 +87,55 @@ const symbols = [
   "dgb"  , "ont"  , "bnt"  , "nano" , "matic", "xwc"  , "zen"  , "btmx" , "qtum" , "hnt"  ,
   "kndc" , "delta", "pib"  , "opt"  , "acdc" , "eth",
 ]
-const MIN_WIDTH = 100;
+const MIN_WIDTH = 40;
 const columns = [
-  { id: 'name', label: 'Name', 
-    minWidth: MIN_WIDTH, },
-  { id: 'code', label: 'ISO\u00a0Code', 
+  {
+    id: '',
+    label: '',
     minWidth: MIN_WIDTH, },
   {
-    id: 'population',
-    label: 'Population',
+    id: 'symbol',
+    label: 'Symbol',
     minWidth: MIN_WIDTH,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
+    id: 'price',
+    label: 'Price',
     minWidth: MIN_WIDTH,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'density',
-    label: 'Density',
+    id: 'change',
+    label: 'Change',
     minWidth: MIN_WIDTH,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
+  {
+    id: 'mini-series',
+    label: 'Mini-Series',
+    minWidth: MIN_WIDTH,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'plusMinus',
+    label: '+/-',
+    minWidth: MIN_WIDTH,
+    align: 'right',
+    format: (value) => value.toLocaleString('en-US'),
+  },
 ];
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
+const createRow = (symbol, price, change) => {
+  return { symbol, price, change };
 }
 
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
-
-const useStyles = makeStyles({
-  root: {
-    background: "#1c1c1f",
-    width: '80%',
-    borderRadius: "12px",
-    color: "white",
-    padding: 10,
-    fontSize: 18,
-    fontStyle: "normal",
-    fontWeight: "100",
-    fontFamily: 'normal 100%/1.5 "Dosis", sans-serif',
-    WebkitFontSmoothing: 'antialiased',
-  },
-  container: {
-    background: "#1c1c1f",
-    maxHeight: "75%",
-    },
-//   row: {
-//     color: "white",
-//     "&:hover": {
-//         backgroundColor: "aqua",
-//         // opacity: "0.1",
-//     }}
+const rows = symbols.map((symbol) => {
+  return createRow(symbol, 10000, 0.6)
 });
 
 export default function CryptosTable() {
@@ -149,16 +153,19 @@ export default function CryptosTable() {
   };
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} >
       <TableContainer className={classes.container}>
         <Table stickyHeader size="small" aria-label="sticky table">
-          <TableHead>
-            <TableRow>
+          <TableHead >
+            <TableRow >
               {columns.map((column) => (
-                <TableCell
+                <TableCell 
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{
+                    minWidth: column.minWidth,
+                    backgroundColor: "#1c1c1f",
+                  color: "white"}}
                 >
                   {column.label}
                 </TableCell>
@@ -168,11 +175,11 @@ export default function CryptosTable() {
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow className={classes.row} hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
-                      <TableCell key={column.id} align={column.align}>
+                      <TableCell className={classes.row} key={column.id} align={column.align}>
                         {column.format && typeof value === 'number' ? column.format(value) : value}
                       </TableCell>
                     );
