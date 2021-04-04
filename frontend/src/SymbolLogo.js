@@ -8,7 +8,7 @@ function Logo(props) {
     <div>  
         <img 
             src={url}
-            style={{height: "30px", position: "relative", top: "50%", transform: "translateY(-50%)"}}
+            style={{height: "30px", position: "relative",}}
             className="Symbol-logo"
             alt={props.symbol}
         />

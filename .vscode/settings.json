@@ -2,5 +2,6 @@
     "python.languageServer": "Pylance",
     "python.formatting.provider": "black",
     "editor.formatOnType": true,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "eslint.format.enable": true
 }

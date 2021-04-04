@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const Tick = (symbol, currency) => {
+const Tick = (props) => {
     const [tick, setTick] = useState({});
     const [price, setPrice] = useState(0);
     const [change, setChange] = useState(0);
-    console.log(symbol)
+    // console.log(props.symbol)
     const symbolTicker = (symbol, currency) => {
         console.log("!!!!!!!!!!!!!!!!!!!!  inside symbolticker  !!!!!!!!!!!!!!!!!!")
         console.log("!!!!!!!!!!!!!!!!!!!!  inside symbolticker  !!!!!!!!!!!!!!!!!!")
@@ -16,7 +16,7 @@ const Tick = (symbol, currency) => {
         ws.onmessage = (event) => {
             // console.log(event)
             let incomingTick = JSON.parse(event.data);
-            // console.log(incomingTick)
+            console.log(incomingTick)
             setTick(incomingTick)
         };
         ws.onclose = () => {
@@ -34,7 +34,7 @@ const Tick = (symbol, currency) => {
         console.log("!!!!!!!!!!!!!!!!!!!!  inside useEFFECT  !!!!!!!!!!!!!!!!!!")
         console.log("!!!!!!!!!!!!!!!!!!!!  inside useEFFECT  !!!!!!!!!!!!!!!!!!")
         console.log("!!!!!!!!!!!!!!!!!!!!  inside useEFFECT  !!!!!!!!!!!!!!!!!!")
-        symbolTicker(symbol, currency)
+        symbolTicker(props.symbol, props.currency)
     }, [])
     
     useEffect(() => {   
@@ -51,7 +51,10 @@ const Tick = (symbol, currency) => {
         return change
     }
 
-    return { price: price, change: change,  }
+    // return <div>{{ price: price }}</div>
+    console.log(tick)
+    // return { price: price }
+    return <div>{price}</div>
 };
 
 export default Tick;
