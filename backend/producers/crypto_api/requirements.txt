@@ -1,8 +1,6 @@
 aiokafka
 aiohttp
 asyncio
-ccxt
 ta
 stockstats
-binance
 requests
