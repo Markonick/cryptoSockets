@@ -11,6 +11,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import SymbolLogo from "./SymbolLogo";
 import Tick from "./Tick";
+import KlineData from './api/KlineData';
 
 
 const symbols = [
@@ -103,15 +104,16 @@ const useStyles = makeStyles({
   }
 });
 
-const createRow = (logo, symbol, price, change) => {
-  return { logo, symbol, price, change };
+const createRow = (logo, symbol, price, change, miniseries) => {
+  return { logo, symbol, price, change, miniseries };
 }
 
 const rows = symbols.map((symbol) => {
   const logo = <SymbolLogo symbol={symbol} />;
   let tick = <Tick symbol={symbol} currency={currency} />;
+  let miniseries = 
   console.log(tick)
-  return createRow(logo, symbol.toUpperCase(), tick, "");
+  return createRow(logo, symbol.toUpperCase(), tick, "", miniseries);
 });
 
 export default function CryptosTable() {

@@ -33,6 +33,7 @@ BINANCE_API_BASE_URL = os.environ.get("BINANCE_API_BASE_URL")
 KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
 KAFKA_CREATE_TOPICS = os.environ.get("KAFKA_CREATE_TOPICS")
 
+
 # INTERFACES / ABSTRACTIONS
 class ICryptoInstrument(abc.ABC):
     @abc.abstractmethod
@@ -53,11 +54,11 @@ class ICryptoApiProducer(abc.ABC):
     async def produce(self, data: dict) -> None:
         pass
 
+
 class KlinesResponseMessage(object):   
     @classmethod
     def get_klines(cls, payload: dict, exchange: str, symbol: str) -> str:
         klines = [cls._get_single_kline_to_dict(kline) for kline in payload]
-
         reponse = {
             "exchange": exchange,
             "symbol": symbol,
@@ -65,7 +66,7 @@ class KlinesResponseMessage(object):
         }
 
         return reponse
-    
+     
     def _get_single_kline_to_dict(kline: list) -> dict:
         kline_keys = [
             "open_time",
@@ -82,22 +83,10 @@ class KlinesResponseMessage(object):
             "ignore"
         ]
 
-        # kline_dict = { k: kline[i] for i, k in enumerate(kline_keys) }
-        kline_dict = {
-            "open_time": kline[0],
-            "open": kline[1],
-            "high": kline[2],
-            "low": kline[3],
-            "close": kline[4],
-            "volume": kline[5],
-            "close_time": kline[6],
-            "quote_asset_volume": kline[7],
-            "number_of_trades": kline[8],
-            "taker_buy_base_asset_volume": kline[9],
-            "taker_buy_quote_asset_volume": kline[10],
-            "ignore": kline[11],
-        }
+        kline_dict = dict(zip(kline_keys, kline))
+        
         return kline_dict
+
 
 # CONCRETE IMPLEMENTATIONS
 class CryptoInstrument(ICryptoInstrument):
@@ -106,7 +95,7 @@ class CryptoInstrument(ICryptoInstrument):
     by calling the API endpoint and uses the injected producer to push api data per 
     crypto (per coroutine) to the Kafka topic.
     """
-    def __init__(self, producer: ICryptoApiProducer, endpoint: str, interval: str, exchange: str, start_ts: int, end_ts: int, limit: int) -> None:
+    def __init__(self, producer: ICryptoApiProducer, endpoint: str, interval: str, exchange: str, start_ts: int=None, end_ts: int=None, limit: int=500) -> None:
         self.producer = producer
         self.endpoint = endpoint
         self.interval = interval
@@ -129,7 +118,7 @@ class CryptoInstrument(ICryptoInstrument):
 
     def _createQueryParams(self, symbol: str, interval: str, limit: int, start_ts: int=None, end_ts: int=None) -> dict:
         """Prepare query params for klines api"""
-        return {
+        params = {
             'symbol': f"{symbol}{CURRENCY}".upper(),
             'interval': interval,
             'startTime': start_ts,
@@ -137,23 +126,33 @@ class CryptoInstrument(ICryptoInstrument):
             'limit': limit,
         }
 
+        return {k: v for k, v in params.items() if v != None}
+
     async def _get_kline_async(self, params: dict, session) -> dict:
         """Get async kline api. Returns array of klines for time window"""
-        async with session.get(endpoint) as response:
-            return await response.text()
+        async with session.get(self.endpoint, params=params) as resp:
+            try:
+                if resp.status == 200:
+                    return await resp.text()
+            except Exception as e:
+                print(e)
+                return None
     
     async def _push_to_kafka(self, params: dict, symbol: str, session) -> None:
         """Wrapper for running program in an asynchronous manner, pushes api reposnse to kafka"""
         try:
             while True:
                 response = await self._get_kline_async(params, session)
-                msg = KlinesResponseMessage.get_klines(response, self.exchange, symbol)
+                if response != None:
+                    msg = KlinesResponseMessage.get_klines(response, self.exchange, symbol)
+                    print(msg)
 
-                await self.producer.produce(msg)
-                time.sleep(30)
+                    await self.producer.produce(msg)
+                    time.sleep(30)
         except Exception as err:
             print(f"Exception occured: {err}")
             pass
+
 
 class CryptoApiProducer(ICryptoApiProducer):
     """Class that creates a Kafka producer and pushes crypto related api data to a Kafka topic"""
@@ -165,11 +164,12 @@ class CryptoApiProducer(ICryptoApiProducer):
         try:
             # produce message
             value_json = json.dumps(message).encode('utf-8')
-            # print("PRODUCING TICKER !!!!!!!!!!!!!!!!!: ", value_json)
+            print("PRODUCING TICKER !!!!!!!!!!!!!!!!!: ", value_json)
             await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
         finally:
             # wait for all pending messages to be delivered or expire.
             await producer.stop()
+
 
 # MAIN ENTRYPOINT
 if __name__ == '__main__':
