@@ -68,7 +68,7 @@ def insert_kline_query(data):
         )
     """
 
-async def write_msg_to_db_async(data) -> None:
+async def write_msg_to_db_async(data, query) -> None:
     conn = await asyncpg.connect('postgres://devUser:devUser1@cryptodb:5432/cryptos')  
     if data["e"] == "24hrTicker":
         await conn.fetch(insert_tick_query(data))
@@ -91,7 +91,7 @@ async def consume() -> None:
         # Consume messages
         async for msg in consumer:
             # print("consumed: ", msg.topic, msg.partition, msg.offset, msg.key, msg.value, msg.timestamp)
-            await write_msg_to_db_async(json.loads(msg.value))
+            await write_msg_to_db_async(json.loads(msg.value), query)
     except LeaderNotAvailableError:
         time.sleep(1)
         async for msg in consumer:

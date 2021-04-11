@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import klines from './mockKlines'
+import React from 'react'
 import { Line } from 'react-chartjs-2'
 import KlineData from './api/KlineData'
-import Tick from "./Tick";
-import Kline from "./Kline";
+// import Kline from "./Kline";
 
 const DATA_LEN = 100-1
 
 export default function TimeSeries(props) {
-  let klineData = Kline(props.symbol, props.currency)
-  // console.log(klineData)
-
+  let klineData = KlineData(props.symbol, props.currency)
   const fifo = (buffer, size, incomingTick) => {
     buffer.push(incomingTick.price)
    
@@ -23,7 +19,6 @@ export default function TimeSeries(props) {
 
   let prices = []
   prices = fifo(prices, DATA_LEN, klineData)
-  // console.log(prices)
   const data = {
     labels: [...Array(DATA_LEN).keys()],
     datasets: [

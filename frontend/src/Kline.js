@@ -7,7 +7,7 @@ const Kline = (symbol, currency) => {
     
     const symbolKline = (symbol, currency) => { 
         const symbolCurrency = `${symbol.toLowerCase()}${currency}`;
-        const ws = new WebSocket(`ws://127.0.0.1:8000/ws/klines/${symbolCurrency}`);
+        const ws = new WebSocket(`ws://127.0.0.1:8004/ws/klines/${symbolCurrency}`);
         ws.onopen = () => {
             ws.send(symbolCurrency);
         };

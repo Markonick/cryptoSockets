@@ -79,36 +79,36 @@ services:
       POSTGRES_DB: cryptos 
       SCHEMA: ${SCHEMA}
       KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
-      KAFKA_CREATE_TOPICS: ${KAFKA_CREATE_TOPICS}
+      KAFKA_TOPIC: ${KAFKA_KLINES_TOPIC}
       KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
       BINANCE_API_BASE_URL: ${BINANCE_API_BASE_URL}
     networks:
       - proxynet
 
-  # crypto_streams:
-  #   build:
-  #     context: ./backend/producers/crypto_streams
-  #     dockerfile: Dockerfile
-  #   restart: unless-stopped
-  #   volumes:
-  #       - ./backend/producers/crypto_streams:/usr/src/app
-  #   ports:
-  #       - 8001:8000
-  #   depends_on:
-  #     - cryptodb
-  #     - kafka
-  #     - zookeeper
-  #   environment:
-  #     PYTHONUNBUFFERED: 1
-  #     POSTGRES_USER: devUser
-  #     POSTGRES_PASSWORD: devUser1
-  #     POSTGRES_DB: cryptos 
-  #     SCHEMA: ${SCHEMA}
-  #     KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
-  #     KAFKA_CREATE_TOPICS: ${KAFKA_CREATE_TOPICS}
-  #     KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
-  #   networks:
-  #     - proxynet
+  crypto_streams:
+    build:
+      context: ./backend/producers/crypto_streams
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+        - ./backend/producers/crypto_streams:/usr/src/app
+    ports:
+        - 8001:8000
+    depends_on:
+      - cryptodb
+      - kafka
+      - zookeeper
+    environment:
+      PYTHONUNBUFFERED: 1
+      POSTGRES_USER: devUser
+      POSTGRES_PASSWORD: devUser1
+      POSTGRES_DB: cryptos 
+      SCHEMA: ${SCHEMA}
+      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
+      KAFKA_TOPIC: ${KAFKA_TICKER_TOPIC}
+      KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
+    networks:
+      - proxynet
 
   # write_real_time_data_to_db:
   #   build:
@@ -135,25 +135,26 @@ services:
   #   networks:
   #     - proxynet
 
-  # ui_binance_websockets_api:
-  #   build:
-  #     context: ./backend/consumers/ui_binance_websockets_api
-  #     dockerfile: Dockerfile
-  #   restart: unless-stopped
-  #   volumes:
-  #       - ./backend/consumers/ui_binance_websockets_api/:/usr/src/app
-  #   ports:
-  #       - 8004:8000
-  #   depends_on:
-  #     - kafka
-  #     - zookeeper
-  #   environment:
-  #     PYTHONUNBUFFERED: 1
-  #     KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
-  #     KAFKA_CREATE_TOPICS: ${KAFKA_CREATE_TOPICS}
-  #     KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
-  #   networks:
-  #     - proxynet
+  ui_binance_websockets_api:
+    build:
+      context: ./backend/consumers/ui_binance_websockets_api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+        - ./backend/consumers/ui_binance_websockets_api/:/usr/src/app
+    ports:
+        - 8004:8000
+    depends_on:
+      - kafka
+      - zookeeper
+    environment:
+      PYTHONUNBUFFERED: 1
+      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
+      KAFKA_TICKER_TOPIC: ${KAFKA_TICKER_TOPIC}
+      KAFKA_KLINES_TOPIC: ${KAFKA_KLINES_TOPIC}
+      KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
+    networks:
+      - proxynet
 
   # frontend:
   #   container_name: frontend

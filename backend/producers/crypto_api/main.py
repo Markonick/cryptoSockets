@@ -31,7 +31,7 @@ SYMBOLS = [
 SCHEMA = os.environ.get("SCHEMA")
 BINANCE_API_BASE_URL = os.environ.get("BINANCE_API_BASE_URL")
 KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
-KAFKA_CREATE_TOPICS = os.environ.get("KAFKA_CREATE_TOPICS")
+KAFKA_TOPIC = os.environ.get("KAFKA_TOPIC")
 
 
 # INTERFACES / ABSTRACTIONS
@@ -84,7 +84,7 @@ class KlinesResponseMessage(object):
         ]
 
         kline_dict = dict(zip(kline_keys, kline))
-        
+
         return kline_dict
 
 
@@ -133,7 +133,7 @@ class CryptoInstrument(ICryptoInstrument):
         async with session.get(self.endpoint, params=params) as resp:
             try:
                 if resp.status == 200:
-                    return await resp.text()
+                    return await resp.json()
             except Exception as e:
                 print(e)
                 return None
@@ -146,7 +146,6 @@ class CryptoInstrument(ICryptoInstrument):
                 if response != None:
                     msg = KlinesResponseMessage.get_klines(response, self.exchange, symbol)
                     print(msg)
-
                     await self.producer.produce(msg)
                     time.sleep(30)
         except Exception as err:
@@ -165,7 +164,7 @@ class CryptoApiProducer(ICryptoApiProducer):
             # produce message
             value_json = json.dumps(message).encode('utf-8')
             print("PRODUCING TICKER !!!!!!!!!!!!!!!!!: ", value_json)
-            await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
+            await producer.send_and_wait(KAFKA_TOPIC, value_json)
         finally:
             # wait for all pending messages to be delivered or expire.
             await producer.stop()

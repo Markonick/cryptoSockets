@@ -9,7 +9,7 @@ const Tick = (props) => {
         console.log("!!!!!!!!!!!!!!!!!!!!  inside symbolticker  !!!!!!!!!!!!!!!!!!")
         console.log("!!!!!!!!!!!!!!!!!!!!  inside symbolticker  !!!!!!!!!!!!!!!!!!")
         const symbolCurrency = `${symbol.toLowerCase()}${currency}`;
-        const ws = new WebSocket(`ws://127.0.0.1:8000/ws/tickers/${symbolCurrency}`);
+        const ws = new WebSocket(`ws://127.0.0.1:8004/ws/tickers/${symbolCurrency}`);
         ws.onopen = () => {
             ws.send(symbolCurrency);
         };
@@ -54,7 +54,7 @@ const Tick = (props) => {
     // return <div>{{ price: price }}</div>
     console.log(tick)
     // return { price: price }
-    return <div>{price}</div>
+    return <li key="crypto">{price}{change}</li>
 };
 
 export default Tick;

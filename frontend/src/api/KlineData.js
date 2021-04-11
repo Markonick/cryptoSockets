@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import ApiCore from './utilities/Core'
 
-const ONE_MINUTE = 60*1000
+const ONE_MINUTE = 1*1000
 const apiKline = new ApiCore({
   getAll: true,
   url: 'klines',

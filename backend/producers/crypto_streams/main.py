@@ -30,7 +30,7 @@ SYMBOLS = [
 # ENVIRONMENTAL VARIABLES
 SCHEMA = os.environ.get("SCHEMA")
 KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
-KAFKA_CREATE_TOPICS = os.environ.get("KAFKA_CREATE_TOPICS")
+KAFKA_TOPIC = os.environ.get("KAFKA_TOPIC")
 
 
 # INTERFACES / ABSTRACTIONS
@@ -100,11 +100,11 @@ class CryptoStreamProducer(ICryptoStreamProducer):
             # produce message
             value_json = json.dumps(message).encode('utf-8')
             # print("PRODUCING TICKER !!!!!!!!!!!!!!!!!: ", value_json)
-            await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
+            await producer.send_and_wait(KAFKA_TOPIC, value_json)
         # except LeaderNotAvailableError:
         #     time.sleep(1)
         #     value_json = json.dumps(message).encode('utf-8')
-        #     await producer.send_and_wait(KAFKA_CREATE_TOPICS, value_json)
+        #     await producer.send_and_wait(KAFKA_TOPIC, value_json)
         finally:
             # wait for all pending messages to be delivered or expire.
             await producer.stop()
