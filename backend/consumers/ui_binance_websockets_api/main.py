@@ -17,20 +17,16 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"])
 KAFKA_ADVERTISED_HOST_NAME = os.environ.get("KAFKA_ADVERTISED_HOST_NAME")
 KAFKA_TICKER_TOPIC = os.environ.get("KAFKA_TICKER_TOPIC")
 KAFKA_KLINES_TOPIC = os.environ.get("KAFKA_KLINES_TOPIC")
-print(KAFKA_ADVERTISED_HOST_NAME)
+API_BASE_URL = os.environ.get("API_BASE_URL")
 
 
 loop = asyncio.get_event_loop()
-
-async def consume(consumer, topic_name) -> None:
-    async for msg in consumer:
-        return msg.value.decode()
 
 @app.get("/")
 def read_root() -> str:
     return {"Hello": "Cryptos"}
 
-@app.get("/klines")
+@app.get(f"{API_BASE_URL}/klines")
 async def get_klines(symbol: str) -> str:
     topic = KAFKA_KLINES_TOPIC
     print(symbol)
@@ -42,9 +38,10 @@ async def websocket_endpoint(websocket: WebSocket, symbol: str) -> None:
     msg = {"Message: ": "connected"}
     await websocket.send_json(msg)
     topic = KAFKA_TICKER_TOPIC
-    await consume_message(topic, symbol, websocket)
+    recv_mesg = await consume_message(topic, symbol)
+    await websocket.send_text(recv_mesg)
 
-async def consume_message(topic, symbol=None, websocket=None) -> None:
+async def consume_message(topic, symbol=None) -> None:
     loop = asyncio.get_event_loop()
     consumer = AIOKafkaConsumer(
         topic,
@@ -59,21 +56,26 @@ async def consume_message(topic, symbol=None, websocket=None) -> None:
     try:
         # Consume messages
         async for msg in consumer:
-            decoded_msg = json.loads(msg.value.decode("utf-8"))
-            print(decoded_msg["s"])
-            if decoded_msg["s"].lower() == symbol.lower():
-                if websocket:
-                    await websocket.send_text(msg.value.decode("utf-8"))
-                else:
-                    return msg.value.decode("utf-8")
+            decoded_msg = msg.value.decode("utf-8")
+            json_msg = json.loads(decoded_msg)
+            # print(json_msg["s"])
+            if json_msg["s"].lower() == symbol.lower():
+                return decoded_msg
+                # if websocket:
+                #     await websocket.send_text(msg.value.decode("utf-8"))
+                # else:
+                #     return msg.value.decode("utf-8")
                     # return decoded_msg
     except LeaderNotAvailableError:
         time.sleep(1)
         async for msg in consumer:
             decoded_msg = msg.value.decode("utf-8")
-            if decoded_msg["s"].lower() == symbol.lower():
-                await websocket.send_text(decoded_msg)
-                print("websocket.send_text(msg.value): ","SENT!!!!!")
+            json_msg = json.loads(decoded_msg)
+            print(json_msg["s"])
+            if json_msg["s"].lower() == symbol.lower():
+                return decoded_msg
+    except Exception as e:
+        print(e)
     finally:
         # Will leave consumer group; perform autocommit if enabled.
         await consumer.stop()

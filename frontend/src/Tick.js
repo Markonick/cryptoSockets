@@ -54,7 +54,8 @@ const Tick = (props) => {
     // return <div>{{ price: price }}</div>
     console.log(tick)
     // return { price: price }
-    return <li key="crypto">{price}{change}</li>
+    return <div>{ price }</div>
+    // return <li key="crypto">{price}{change}</li>
 };
 
 export default Tick;

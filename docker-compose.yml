@@ -1,25 +1,32 @@
 version: '3.7'
 services:
-  cryptodb:
-    image: postgres:13
-    ports:
-      - "5432:5432"
-    environment: 
-        POSTGRES_USER: devUser
-        POSTGRES_PASSWORD: devUser1
-        POSTGRES_DB: cryptos 
-    volumes:
-      - ./backend/db:/docker-entrypoint-initdb.d/
-    networks:
-      - proxynet  
-
+  # ========
+  # POSTGRES
+  # ========
+  # cryptodb:
+  #   image: postgres:13
+  #   ports:
+  #     - "5432:5432"
+  #   environment: 
+  #       POSTGRES_USER: devUser
+  #       POSTGRES_PASSWORD: devUser1
+  #       POSTGRES_DB: cryptos 
+  #   volumes:
+  #     - ./backend/db:/docker-entrypoint-initdb.d/
+  #   networks:
+  #     - proxynet 
+  #=============== 
+  # KAFKA ZOOKEPER
+  #===============
   zookeeper:
     image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
     networks:
-      - proxynet  
-
+      - proxynet 
+  #================ 
+  # KAFKA EVENT BUS
+  #================
   kafka:
     image: wurstmeister/kafka
     ports:
@@ -40,51 +47,57 @@ services:
         timeout: 10s
         retries: 5
     networks:
-      - proxynet  
-
-  kafdrop:
-    image: obsidiandynamics/kafdrop:3.23.0
-    ports:
-      - 9100:9000
-    environment:
-      - KAFKA_BROKERCONNECT=kafka:9092
-      - JVM_OPTS=-Xms32M -Xmx64M
-    depends_on:
-      - kafka
-    healthcheck:
-        test: ["CMD", "curl", "-f", "kafdrop"]
-        interval: 30s
-        timeout: 10s
-        retries: 5
-    networks:
-      - proxynet
-  
-  crypto_api:
-    build:
-      context: ./backend/producers/crypto_api
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    volumes:
-        - ./backend/producers/crypto_api:/usr/src/app
-    ports:
-        - 8002:8000
-    depends_on:
-      - cryptodb
-      - kafka
-      - zookeeper
-    environment:
-      PYTHONUNBUFFERED: 1
-      POSTGRES_USER: devUser
-      POSTGRES_PASSWORD: devUser1
-      POSTGRES_DB: cryptos 
-      SCHEMA: ${SCHEMA}
-      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
-      KAFKA_TOPIC: ${KAFKA_KLINES_TOPIC}
-      KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
-      BINANCE_API_BASE_URL: ${BINANCE_API_BASE_URL}
-    networks:
-      - proxynet
-
+      - proxynet 
+  #========== 
+  # KAFKA GUI
+  #==========
+  # kafdrop:
+  #   image: obsidiandynamics/kafdrop:3.23.0
+  #   ports:
+  #     - 9100:9000
+  #   environment:
+  #     - KAFKA_BROKERCONNECT=kafka:9092
+  #     - JVM_OPTS=-Xms32M -Xmx64M
+  #   depends_on:
+  #     - kafka
+  #   healthcheck:
+  #       test: ["CMD", "curl", "-f", "kafdrop"]
+  #       interval: 30s
+  #       timeout: 10s
+  #       retries: 5
+  #   networks:
+  #     - proxynet
+  #========================
+  # PRODUCER SERVICES / API
+  #========================
+  # crypto_api:
+  #   build:
+  #     context: ./backend/producers/crypto_api
+  #     dockerfile: Dockerfile
+  #   restart: unless-stopped
+  #   volumes:
+  #       - ./backend/producers/crypto_api:/usr/src/app
+  #   ports:
+  #       - 8002:8000
+  #   depends_on:
+  #     - cryptodb
+  #     - kafka
+  #     - zookeeper
+  #   environment:
+  #     PYTHONUNBUFFERED: 1
+  #     POSTGRES_USER: devUser
+  #     POSTGRES_PASSWORD: devUser1
+  #     POSTGRES_DB: cryptos 
+  #     SCHEMA: ${SCHEMA}
+  #     KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
+  #     KAFKA_TOPIC: ${KAFKA_KLINES_TOPIC}
+  #     KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
+  #     BINANCE_API_BASE_URL: ${BINANCE_API_BASE_URL}
+  #   networks:
+  #     - proxynet
+  #===============================
+  # PRODUCER SERVICES / WEBSOCKETS
+  #===============================
   crypto_streams:
     build:
       context: ./backend/producers/crypto_streams
@@ -95,7 +108,7 @@ services:
     ports:
         - 8001:8000
     depends_on:
-      - cryptodb
+      # - cryptodb
       - kafka
       - zookeeper
     environment:
@@ -109,7 +122,9 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
     networks:
       - proxynet
-
+  #=============================
+  # CONSUMER SERVICES / DB WRITE
+  #=============================
   # write_real_time_data_to_db:
   #   build:
   #     context: ./backend/consumers/write_real_time_data_to_db
@@ -134,7 +149,9 @@ services:
   #     KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
   #   networks:
   #     - proxynet
-
+  #=============================
+  # CONSUMER SERVICES / WS + API
+  #=============================
   ui_binance_websockets_api:
     build:
       context: ./backend/consumers/ui_binance_websockets_api
@@ -153,9 +170,12 @@ services:
       KAFKA_TICKER_TOPIC: ${KAFKA_TICKER_TOPIC}
       KAFKA_KLINES_TOPIC: ${KAFKA_KLINES_TOPIC}
       KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
+      API_BASE_URL: ${API_BASE_URL}
     networks:
       - proxynet
-
+  #=========
+  # FRONTEND
+  #=========
   # frontend:
   #   container_name: frontend
   #   build:

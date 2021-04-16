@@ -114,7 +114,7 @@ const rows = symbols.map((symbol) => {
   let tick = <Tick symbol={symbol} currency={currency} />;
   let miniseries = <TimeSeries symbol={symbol} currency={currency} />;
   console.log(tick)
-  return createRow(logo, symbol.toUpperCase(), ...tick, miniseries);
+  return createRow(logo, symbol.toUpperCase(), tick, miniseries);
 });
 
 export default function CryptosTable() {
