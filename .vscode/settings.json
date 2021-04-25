@@ -3,5 +3,6 @@
     "python.formatting.provider": "black",
     "editor.formatOnType": true,
     "editor.formatOnPaste": true,
-    "eslint.format.enable": true
+    "eslint.format.enable": true,
+    "python.pythonPath": "/bin/python3"
 }
